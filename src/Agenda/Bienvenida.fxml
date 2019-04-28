@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" onMouseDragged="#moveWindow" onMousePressed="#getWindow" prefHeight="699.0" prefWidth="1164.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Agenda.BienvenidaController">
+   <children>
+      <Pane layoutY="29.0" prefHeight="670.0" prefWidth="292.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="nombre" layoutX="59.0" layoutY="15.0" prefHeight="79.0" prefWidth="219.0" textFill="#003333" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Aleo Regular" size="23.0" />
+               </font>
+            </Label>
+            <MaterialDesignIconView fill="#003333" glyphName="BOOK" layoutX="11.0" layoutY="72.0" size="40" wrappingWidth="42.0" />
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="0.0" layoutY="212.0" prefHeight="58.0" prefWidth="292.0" ripplerFill="#00adad" style="-fx-background-color: #003333;" text="Directorio personal " textFill="WHITE">
+               <font>
+                  <Font name="Material Design Icons" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <padding>
+                  <Insets right="25.0" />
+               </padding>
+            </JFXButton>
+            <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_BOX_OUTLINE" layoutX="63.0" layoutY="251.0" size="26" wrappingWidth="33.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutY="277.0" prefHeight="58.0" prefWidth="292.0" ripplerFill="#00adad" style="-fx-background-color: #003333;" text="Directorio empresarial " textFill="WHITE">
+               <font>
+                  <Font name="Material Design Icons" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </JFXButton>
+            <MaterialDesignIconView fill="WHITE" glyphName="BRIEFCASE" layoutX="62.0" layoutY="315.0" size="26" wrappingWidth="33.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
+            <Label fx:id="puesto" layoutX="187.0" layoutY="117.0" prefHeight="25.0" prefWidth="85.0" textFill="#464646">
+               <font>
+                  <Font name="Aleo Regular" size="15.0" />
+               </font>
+            </Label>
+            <Text layoutX="127.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puesto:" wrappingWidth="57.13671875">
+               <font>
+                  <Font name="Aleo Regular" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="62.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. de trabajador:" wrappingWidth="158.13671875">
+               <font>
+                  <Font name="Aleo Regular" size="14.0" />
+               </font>
+            </Text>
+            <Label fx:id="id_trabajador" layoutX="189.0" layoutY="92.0" prefHeight="25.0" prefWidth="85.0" textFill="#464646">
+               <font>
+                  <Font name="Aleo Regular" size="15.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="cancelarBtn" cancelButton="true" graphicTextGap="2.0" layoutX="70.0" layoutY="607.0" maxHeight="-Infinity" onMouseClicked="#createLogin" opacity="0.8" prefHeight="40.0" prefWidth="142.0" styleClass="bad_Button" text="Cerrar Sesion" underline="true">
+               <font>
+                  <Font name="Material Design Icons" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane prefHeight="29.0" prefWidth="1168.0" style="-fx-background-color: #003333;">
+         <children>
+            <MaterialDesignIconView fx:id="closeWinBtn" fill="#00adad" glyphName="WINDOW_CLOSE" layoutX="1134.0" layoutY="23.0" onMouseClicked="#manageWindow" size="25">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
+            <MaterialDesignIconView fx:id="minWinBtn" fill="#00adad" glyphName="WINDOW_MINIMIZE" layoutX="1106.0" layoutY="23.0" onMouseClicked="#manageWindow" size="25">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
+         </children>
+      </Pane>
+      <Pane layoutX="292.0" layoutY="29.0" prefHeight="671.0" prefWidth="876.0" style="-fx-background-color: #007676;" />
+   </children>
+</AnchorPane>

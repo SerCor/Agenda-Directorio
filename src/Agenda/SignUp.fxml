@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" onMouseDragged="#moveWindow" onMousePressed="#getWindow" prefHeight="532.0" prefWidth="736.0" styleClass="formulario" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.SignUpController">
+   <children>
+      <Pane layoutY="23.0" prefHeight="59.0" prefWidth="736.0" styleClass="button">
+         <children>
+            <Text fill="#007676" layoutX="53.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crea una cuenta">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <JFXButton fx:id="crearSesion" buttonType="RAISED" disable="true" layoutX="28.0" layoutY="445.0" onAction="#validateForm" prefHeight="39.0" prefWidth="200.0" ripplerFill="WHITE" style="-fx-text-fill: #002626 #002626;" text="Crear Sesión" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <MaterialDesignIconView glyphName="ARROW_LEFT" layoutX="591.0" layoutY="484.0" size="22" />
+      <JFXButton fx:id="cancelarBtn" cancelButton="true" graphicTextGap="2.0" layoutX="588.0" layoutY="454.0" maxHeight="-Infinity" onMouseClicked="#createLogin" opacity="0.8" prefHeight="40.0" prefWidth="119.0" styleClass="bad_Button" text="Cancelar" underline="true" AnchorPane.leftAnchor="588.0">
+         <font>
+            <Font name="Material Design Icons" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXTextField fx:id="nombre" focusColor="#00adad" labelFloat="true" layoutX="28.0" layoutY="206.0" onKeyTyped="#enableButton" prefHeight="40.0" prefWidth="185.0" promptText="Nombre" unFocusColor="#a8a8a8">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="apellidos" focusColor="#00adad" labelFloat="true" layoutX="254.0" layoutY="206.0" onKeyTyped="#enableButton" prefHeight="40.0" prefWidth="239.0" promptText="Apellidos" unFocusColor="#a8a8a8">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="idTrabajador" focusColor="#00adad" labelFloat="true" layoutX="28.0" layoutY="120.0" onKeyTyped="#enableButton" prefHeight="40.0" prefWidth="185.0" promptText="Id de Trabajador" unFocusColor="#005555">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXComboBox fx:id="puesto" labelFloat="true" layoutX="254.0" layoutY="120.0" onHiding="#enableButton" prefHeight="45.0" prefWidth="239.0" promptText="Puesto de trabajo">
+          
+      </JFXComboBox>
+      <JFXTimePicker fx:id="hrEntrada" defaultColor="#005555" layoutX="540.0" layoutY="206.0" onHiding="#enableButton" prefHeight="22.0" prefWidth="174.0" promptText=" de Entrada" style="-fx-font-size: 12;" />
+      <JFXTimePicker fx:id="hrComida" defaultColor="#005555" layoutX="540.0" layoutY="258.0" onHiding="#enableButton" prefHeight="22.0" prefWidth="174.0" promptText=" de Comida " style="-fx-font-size: 12;" />
+      <JFXTimePicker fx:id="hrSalida" defaultColor="#005555" layoutX="540.0" layoutY="312.0" onHiding="#enableButton" prefHeight="22.0" prefWidth="174.0" promptText=" de Salida" style="-fx-font-size: 12;" />
+      <JFXTextField fx:id="usuario" focusColor="#00adad" labelFloat="true" layoutX="28.0" layoutY="293.0" onKeyTyped="#enableButton" prefHeight="30.0" prefWidth="466.0" promptText="Nombre de usuario" unFocusColor="#a8a8a8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="password" focusColor="#cccccc" labelFloat="true" layoutX="28.0" layoutY="360.0" onKeyTyped="#enableButton" prefHeight="25.0" prefWidth="174.0" promptText="contraseña" unFocusColor="#00adad">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField fx:id="confirmPassword" focusColor="#cccccc" labelFloat="true" layoutX="254.0" layoutY="360.0" onKeyReleased="#validatePassword" onKeyTyped="#enableButton" prefHeight="30.0" prefWidth="239.0" promptText="confirmar contraseña" unFocusColor="#00adad">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <Text fill="#005555" layoutX="581.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horario">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Pane prefHeight="25.0" prefWidth="736.0" style="-fx-background-color: #007676;">
+         <children>
+            <MaterialDesignIconView fx:id="minWinBtn" fill="#00adad" glyphName="MINUS" layoutX="705.0" layoutY="20.0" onMouseClicked="#manageWindow" size="22" text="" />
+         </children>
+      </Pane>
+      <Label fx:id="warning" alignment="CENTER" layoutX="526.0" layoutY="359.0" prefHeight="40.0" prefWidth="165.0" styleClass="error" wrapText="true" />
+      <Text fill="#979797" layoutX="671.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Presione aqui" textAlignment="CENTER" wrappingWidth="54.13671875">
+         <font>
+            <Font name="Material Design Icons" size="11.0" />
+         </font>
+      </Text>
+      <MaterialDesignIconView fill="#aeaeae" glyphName="ARROW_DOWN" layoutX="692.0" layoutY="203.0" />
+   </children>
+</AnchorPane>

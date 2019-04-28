@@ -1,0 +1,36 @@
+.root{
+    -fx-background-color: #003333;
+}
+#titulo{
+    -fx-text-fill: #ffffff;
+}
+
+.button{
+    -fx-background-color: #00adad;
+    -fx-text-fill: #ffffff;
+}
+.bad_Button{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #666666;
+    
+}
+.label{
+    -fx-text-fill: #ffffff;
+}
+#textfieldUsuario{
+   -fx-background-color: #cccccc;
+   -fx-text-fill: #333333;
+}
+#passwordField{
+    -fx-background-color: #cccccc;
+       -fx-text-fill: #333333;
+}
+.formulario{
+    -fx-background-color:#ffffff;
+}
+.jfx-combo-box {
+    -fx-font-size: 18px;
+}
+.error{
+    -fx-text-fill: #cc0000;
+}

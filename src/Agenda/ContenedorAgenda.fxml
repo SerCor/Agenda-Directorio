@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane fx:id="contenedorAgenda" dividerPositions="0.2494" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="565.0" prefWidth="1921.0" stylesheets="@Principal.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.ContenedorAgendaController">
+   <items>
+      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="371.0" prefWidth="490.0">
+         <content>
+            <VBox id="contenedorCitasDia" fx:id="contenedorCitasDia" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #005555;">
+               <children>
+                  <Label id="etiqDia" fx:id="etiqDia" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="18.0" prefWidth="344.0" text="Dia 1" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane>
+                     <children>
+                        <Button contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#limpiarCita" prefWidth="100.0" text="Limpiar Cita" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="20.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button contentDisplay="CENTER" layoutX="328.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#crearModificarCitas" text="Crear/Modificar citas" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="20.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <VBox id="contenedorAgenda" fx:id="contenedorCalendario" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="1427.0">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button id="btnAtras" fx:id="btnAtras" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#mostrarMesAnterior" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #6FD2E8;" styleClass="btnMovimiento" text="Atras" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnSiguiente" fx:id="btnSiguiente" contentDisplay="CENTER" layoutX="509.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarMesPosterior" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #6FD2E8;" styleClass="BtnMovimiento" stylesheets="@Principal.css" text="Siguiente" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label id="etiquetaMes" alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="8.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="798.0" text="Mes" textAlignment="CENTER" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="101.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <GridPane hgap="1.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="35.0" style="-fx-background-color: #005555;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="LUNES" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="MARTES" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="MIERCOLES" textFill="WHITE" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="JUEVES" textFill="WHITE" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="VIERNES" textFill="WHITE" GridPane.columnIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="SABADO" textFill="WHITE" GridPane.columnIndex="5">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="DOMINGO" textFill="WHITE" GridPane.columnIndex="6">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+               <children>
+                  <GridPane id="tablaDias" fx:id="tablaDias" alignment="TOP_CENTER" hgap="2.0" layoutX="2.0" layoutY="39.999996185302734" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#verDia" prefHeight="573.6" prefWidth="1508.0" vgap="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox id="day1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="1" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="2" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day2" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="3" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day3" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="4" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day4" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="5" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day5" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="6" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day6" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="7" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day7" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="8" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day8" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="9" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day9" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="10" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day10" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="11" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day11" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="12" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day12" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="13" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day13" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="14" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day14" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="15" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day15" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="16" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day16" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="17" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day17" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="18" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day18" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="19" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day19" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="20" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day20" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="21" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day21" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="22" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day22" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="23" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day23" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="24" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day24" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="25" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day25" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="26" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day26" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="208.0" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="27" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day27" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="28" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day28" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="29" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day29" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="30" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day30" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="31" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day31" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="0" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day1" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="0" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day1" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="0" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day1" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" text="0" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day1" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" style="d-color: #005555;" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day36" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day8" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day8" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day8" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day8" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day8" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedorDia" stylesheets="@Principal.css" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" styleClass="etiquetaDia" textAlignment="CENTER" textFill="#060000" VBox.vgrow="ALWAYS" />
+                              <Button id="day8" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verDia" prefHeight="58.4" prefWidth="143.2" styleClass="botonDia" text="Ver dia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+   </items>
+</SplitPane>

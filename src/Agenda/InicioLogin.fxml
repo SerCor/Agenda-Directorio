@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMouseDragged="#moveWindow" onMousePressed="#getWindow" prefHeight="449.0" prefWidth="355.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.InicioLogin">
+    <children>
+      <Pane layoutX="-1.0" prefHeight="32.0" prefWidth="355.0" style="-fx-background-color: #002626;">
+         <children>
+            <MaterialDesignIconView fx:id="closeWinBtn" fill="#015757" glyphName="WINDOW_CLOSE" layoutX="324.0" layoutY="25.0" onMousePressed="#manageWindow" size="25">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></MaterialDesignIconView>
+            <MaterialDesignIconView fx:id="minWinBtn" fill="#015757" glyphName="WINDOW_MINIMIZE" layoutX="294.0" layoutY="28.0" onMousePressed="#manageWindow" size="28" text="">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></MaterialDesignIconView>
+         </children>
+      </Pane>
+      <TextField fx:id="textfieldUsuario" layoutX="70.0" layoutY="167.0" onKeyTyped="#enableButton" prefHeight="39.0" prefWidth="213.0" promptText="-">
+         <font>
+            <Font name="Material Design Icons" size="21.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <PasswordField fx:id="passwordField" layoutX="71.0" layoutY="250.0" onAction="#loginAction" onKeyTyped="#enableButton" prefHeight="39.0" prefWidth="213.0" promptText="-">
+         <font>
+            <Font name="Material Design Icons" size="18.0" />
+         </font></PasswordField>
+      <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="49.0" prefHeight="75.0" prefWidth="245.0" style="-fx-text-fill: #ffffff;" text="Control de citas y Contactos" textAlignment="CENTER" textFill="#454546" wrapText="true">
+         <font>
+            <Font name="Aleo Regular" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="233.0" text="Contraseña">
+         <font>
+            <Font name="Material Design Icons" size="14.0" />
+         </font></Label>
+      <Label layoutX="71.0" layoutY="150.0" text="Nombre de Usuario">
+         <font>
+            <Font name="Material Design Icons" size="14.0" />
+         </font></Label>
+      <JFXButton fx:id="Buttonlogin" buttonType="RAISED" disable="true" layoutX="123.0" layoutY="339.0" onAction="#loginAction" prefHeight="60.0" prefWidth="109.0" ripplerFill="#1725bc" text="Entrar">
+         <font>
+            <Font name="Material Design Icons" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Pane layoutX="-1.0" layoutY="436.0" prefHeight="15.0" prefWidth="355.0" style="-fx-background-color: #002626;" />
+      <Label fx:id="crearCuenta" alignment="CENTER" layoutX="240.0" layoutY="410.0" onMouseClicked="#createSignUp" prefHeight="25.0" prefWidth="109.0" text="Crear Cuenta" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="warning" layoutX="4.0" layoutY="410.0" prefHeight="25.0" prefWidth="229.0" styleClass="error">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

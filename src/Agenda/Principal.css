@@ -1,0 +1,37 @@
+
+.contenedorCiasDia{
+    -fx-padding: 10;
+}
+
+.contenedorCita{
+    -fx-background-color:#53706F  ;
+    -fx-border-radius: 20;
+}
+
+.contenedorCita:hover , .contenedorContactoEmpresarial:hover , .contenedorContactoPersonal:hover{
+    -fx-background-color: #5D877A;
+}
+
+.etiquetaAsunto ,  .etiquetaNombre{
+    -fx-text-fill: white;
+}
+
+.etiquetaHora{
+    -fx-text-fill: white;
+    -fx-font: bold italic 14pt "Arial";
+}
+
+.botonDia{
+    -fx-background-color:   #5D7D87;
+    -fx-padding: 10;
+}
+
+.botonDia:hover{
+    -fx-background-color:#5D877A;
+}
+
+.etiquetaDia{
+    -fx-font: bold normal 10pt "Arial";
+}
+
+

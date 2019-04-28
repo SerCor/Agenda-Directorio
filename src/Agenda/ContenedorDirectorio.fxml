@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="530.0" prefWidth="865.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.ContenedorDirectorioController">
+   <tabs>
+      <Tab id="tabDirectorioPersonal" style="-fx-background-color: #00D1A6;" styleClass="pestaña" text="Personal">
+         <content>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <GridPane id="encabezado" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="1859.0" style="-fx-background-color: #05506B;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1335.2" minWidth="10.0" prefWidth="491.999951171875" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="307.7999511718751" minWidth="10.0" prefWidth="288.80004882812494" />
+                        <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="1335.2" minWidth="10.0" prefWidth="85.40004882812502" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="623.199951171875" minWidth="0.0" prefWidth="0.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="70.0" text="Directorio Personal" textFill="WHITE" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets left="30.0" top="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets top="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#agregarContactoPersonal" prefHeight="28.0" prefWidth="0.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@anadir.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets right="20.0" top="3.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <HBox maxHeight="-Infinity" prefHeight="30.0" prefWidth="343.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Buscar" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="campoBusquedaPersona" onKeyPressed="#buscarContactoPersonal" prefHeight="26.0" prefWidth="206.0" promptText="Nombre">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="3.0" />
+                           </GridPane.margin>
+                        </HBox>
+                     </children>
+                  </GridPane>
+                  <ScrollPane fx:id="scrollDirectorioPersonal" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox id="contenedorDirectorioPersonal" fx:id="contenedorDirectorioPersonal" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="15.0" style="-fx-background-color: #005555;">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab id="tabDirectorioEmpresarial" style="-fx-background-color: #00D1A6;" styleClass="pestaña" text="Empresarial">
+         <content>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <GridPane id="encabezado" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="1859.0" style="-fx-background-color: #05506B;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1335.2" minWidth="10.0" prefWidth="491.999951171875" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="307.7999511718751" minWidth="10.0" prefWidth="288.80004882812494" />
+                        <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="1335.2" minWidth="10.0" prefWidth="85.40004882812502" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="623.199951171875" minWidth="0.0" prefWidth="0.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="70.0" text="Directorio Empresarial" textFill="WHITE" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets left="30.0" top="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets top="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#agregarContactoEmpresarial" prefHeight="28.0" prefWidth="0.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@anadir.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets right="20.0" top="3.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <HBox maxHeight="-Infinity" prefHeight="30.0" prefWidth="343.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Buscar" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="campoBusquedaEmpresa" onKeyPressed="#buscarContactoEmpresarial" prefHeight="26.0" prefWidth="206.0" promptText="Nombre">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="3.0" />
+                           </GridPane.margin>
+                        </HBox>
+                     </children>
+                  </GridPane>
+                  <ScrollPane fx:id="scrollDirectorioEmpresarial" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#bloquearEnter" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox id="contenedorDirectorioEmpresarial" fx:id="contenedorDirectorioEmpresarial" maxWidth="1.7976931348623157E308" prefHeight="356.0" prefWidth="600.0" spacing="15.0" style="-fx-background-color: #005555;">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

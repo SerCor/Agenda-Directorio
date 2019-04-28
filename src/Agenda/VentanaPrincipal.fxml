@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane fx:id="contenedorPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="2000.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.VentanaPrincipalController">
+  <tabs>
+    <Tab id="tabDirectorio" fx:id="tabDirectorio" style="-fx-background-color: #0A87C4;" styleClass="pestaña" text="Directorio" />
+    <Tab id="tabAgenda" fx:id="tabAgenda" style="-fx-background-color: #0A87C4;" styleClass="pestaña" text="Agenda" />
+  </tabs>
+</TabPane>
