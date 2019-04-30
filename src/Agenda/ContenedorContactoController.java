@@ -1,6 +1,8 @@
 
 package Agenda;
 
+import DAO.CitaDAO;
+import DAO.CitaSql;
 import DAO.ContactoDAO;
 import DAO.ContactoEmpresarialSql;
 import DTO.ContactoEmpresarialDTO;
@@ -243,8 +245,17 @@ public class ContenedorContactoController implements Initializable {
             System.out.println("Eliminado contacto empresarial");
             FXMLLoader loader = (FXMLLoader) btn.getScene().getWindow().getScene().getUserData();
             VentanaPrincipalController controller = (VentanaPrincipalController)loader.getController();
+            
+            //Eliminando citas relacionadas con trabajador
+            CitaDAO baseD2 = new CitaSql();
+            baseD2.delete(contacto.getNombre(),contacto.getId_Trabajador());
+            
+            //Eliminando al trabajador
             ContactoEmpresarialSql baseD = new ContactoEmpresarialSql();
             baseD.delete(contacto);
+            
+            //actualizar la agenda
+            
             controllerDirectorio.actualizarDirectorioEmpresarial();
         } catch (SQLException ex) {
             FXMLLoader loader = (FXMLLoader) ((Button)e.getSource()).getScene().getWindow().getScene().getUserData();

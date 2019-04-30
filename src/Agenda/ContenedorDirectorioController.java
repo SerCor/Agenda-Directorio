@@ -5,6 +5,8 @@
  */
 package Agenda;
 
+import DAO.CitaDAO;
+import DAO.CitaSql;
 import DAO.ContactoEmpresarialSql;
 import DAO.ContactoPersonalSql;
 import DAO.DirectorioEmpresarialSql;
@@ -283,8 +285,17 @@ public class ContenedorDirectorioController implements Initializable {
             Directorio dir = usuario.getDirEmpresarial();
             if(!dir.eliminarContacto(contacto))
                 controllerPrincipal.mostrarVentanaError("Error. No fue posible eliminar el contacto de la base de datos");
-            else
+            else{
                 actualizarDirectorioEmpresarial();
+                //Eliminar todas las citas del usuario eliminado
+                try{
+                       CitaDAO baseD = new CitaSql();
+                    System.out.println("Citas borradas: " + baseD.delete(contacto.getNombre(),contacto.getId_Trabajador()));
+                }catch(SQLException e){
+                    controllerPrincipal.mostrarVentanaError("Error. No fue posible borrar datos relacionados con el contacto eliminado");
+                } 
+      
+            }
 
     }
 
@@ -292,8 +303,11 @@ public class ContenedorDirectorioController implements Initializable {
         Directorio dir = usuario.getDirPersonal();
         if(dir.eliminarContacto(contacto))
             controllerPrincipal.mostrarVentanaError("Error. No fue posible eliminar el contacto de la base de datos");
-        else
+        else{
+            //Eliminar todas las citas del usuario eliminado
             actualizarDirectorioPersonal();
+            
+        }
     }
     
 }

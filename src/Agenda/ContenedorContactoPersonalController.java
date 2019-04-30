@@ -5,6 +5,8 @@
  */
 package Agenda;
 
+import DAO.CitaDAO;
+import DAO.CitaSql;
 import DAO.ContactoEmpresarialSql;
 import DAO.ContactoPersonalSql;
 import DTO.ContactoPersonalDTO;
@@ -51,6 +53,7 @@ public class ContenedorContactoPersonalController implements Initializable {
     private ImageView imgEscribi[];
     private VentanaPrincipalController controllerPrincipal;
     private ContenedorDirectorioController controllerDirectorio;
+
     
     public void setControllerDirectorio(ContenedorDirectorioController controller){
         controllerDirectorio = controller;
@@ -233,9 +236,17 @@ public class ContenedorContactoPersonalController implements Initializable {
             System.out.println("Eliminando contacto personal");
             FXMLLoader loader = (FXMLLoader) btn.getScene().getWindow().getScene().getUserData();
             VentanaPrincipalController controller = (VentanaPrincipalController)loader.getController();
+            
+            //Elimiando citas relacionadas con el trabajador
+            CitaDAO baseD2 = new CitaSql();
+           baseD2.delete(contacto.getNombre(),contacto.getId_Trabajador());
+           
+           //Eliminando trabajador
             ContactoPersonalSql baseD = new ContactoPersonalSql();
             baseD.delete(contacto);
-            System.out.println("Controller: " + controllerDirectorio);
+            
+            //Actualizar la agenda
+            
             controllerDirectorio.actualizarDirectorioPersonal();
         } catch (SQLException ex) {
                 ex.printStackTrace();

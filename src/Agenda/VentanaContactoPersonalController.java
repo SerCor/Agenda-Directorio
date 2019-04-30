@@ -9,6 +9,7 @@ import DAO.ContactoPersonalSql;
 import DTO.ContactoPersonalDTO;
 import DTO.DirectorioPersonalDTO;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -125,6 +126,8 @@ public class VentanaContactoPersonalController implements Initializable {
             controllerDirectorio.actualizarDirectorioPersonal();
             Stage ventana =(Stage) campoNombre.getScene().getWindow();
             ventana.close();
+        }catch(SQLException e){
+            controllerPrincipal.mostrarVentanaError("Error. Es posible que ya existe un contacto con este nombre.");
         }catch(Exception er){
             controllerPrincipal.mostrarVentanaError(er.getMessage());
         }

@@ -33,6 +33,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,6 +65,7 @@ public class VentanaPrincipalController implements Initializable {
     @FXML Tab tabDirectorio;
     private TabPane directorio;
     private SplitPane agenda;
+    private ContenedorAgendaController controllerAgenda;
     /*@FXML VBox contenedorAgenda;
     @FXML VBox contenedorDirectorioPersonal;
     @FXML VBox contenedorDirectorioEmpresarial;
@@ -211,6 +214,7 @@ public class VentanaPrincipalController implements Initializable {
             controllerAgenda.setMyController(controllerAgenda);
             FXMLLoader loader =(FXMLLoader) (contenedorPrincipal.getScene().getUserData());
             VentanaPrincipalController controllerPrincipal = loader.getController();
+            this.controllerAgenda = controllerAgenda;
             controllerAgenda.setControllerPrincipal(controllerPrincipal);
             controllerAgenda.setUsuario(usuario);
             controllerAgenda.actualizaTableroMes();
@@ -222,6 +226,15 @@ public class VentanaPrincipalController implements Initializable {
              e.printStackTrace();
              mostrarVentanaError("Error.No fue posible cargar los datos de la agenda.");
          }
+    }
+    
+    @FXML
+    public void renovarAgenda(Event value){
+        if(controllerAgenda != null){
+            controllerAgenda.actualizaTableroMes();
+           controllerAgenda.actualizarTableroCitasDia();
+        }
+        
     }
     
 //    public void actualizarTodo(){

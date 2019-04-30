@@ -191,7 +191,6 @@ public class VentanaCitaController implements Initializable {
           controllerAgenda.actualizarTableroCitasDia();
           
         }catch(SQLException ex){
-            ex.printStackTrace();
             etiquetaError.setText("Error. No fue posible guardar los datos en la base de datos.");
         }
     }
