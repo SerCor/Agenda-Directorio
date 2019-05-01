@@ -7,6 +7,7 @@ package Agenda;
 
 import DAO.CitaDAO;
 import DAO.CitaSql;
+import DAO.ContactoDAO;
 import DAO.ContactoEmpresarialSql;
 import DAO.ContactoPersonalSql;
 import DTO.ContactoPersonalDTO;
@@ -53,6 +54,7 @@ public class ContenedorContactoPersonalController implements Initializable {
     private ImageView imgEscribi[];
     private VentanaPrincipalController controllerPrincipal;
     private ContenedorDirectorioController controllerDirectorio;
+    private String nombreAnterior;
 
     
     public void setControllerDirectorio(ContenedorDirectorioController controller){
@@ -75,6 +77,7 @@ public class ContenedorContactoPersonalController implements Initializable {
             
             //Nombre
             campoNombre.setText(contacto.getNombre());
+            nombreAnterior = contacto.getNombre();
             
             //Telefono Fijo
             campoTelefonoFijo.setText(contacto.getTelefono());
@@ -117,8 +120,27 @@ public class ContenedorContactoPersonalController implements Initializable {
         if(btn == actualizaNombre){     
             if(img.equals(imgGuarda[0])){
                 //Nombre
+                campoNombre.setText(campoNombre.getText().toUpperCase());
                  if(campoNombre.getText().isEmpty())
                     throw new Exception("Error. Rellena el campo nombre.");
+                 
+                     //Verificacion de si existe un contacto con este nombre
+            ContactoDAO baseD = new ContactoPersonalSql();
+            ContactoDAO baseD2 = new ContactoEmpresarialSql();
+            
+            //Verifica si realmente se hicieron cambios
+            if(!nombreAnterior.equals(campoNombre.getText())){
+                if(baseD.select(controllerPrincipal.getUsuario().getIdTrabajador(), campoNombre.getText()) || baseD2.select(controllerPrincipal.getUsuario().getIdTrabajador(),campoNombre.getText())){
+                    //Se encontro contacto con el mismo nombre
+                    throw new Exception("Error. Nombre de contacto ya existente.");
+                }   
+            }
+            
+            //Actualiza las citas con el mismo nombre
+                CitaDAO baseD3 = new CitaSql();
+                baseD3.update(campoNombre.getText(), controllerPrincipal.getUsuario().getIdTrabajador(),nombreAnterior);
+                
+                nombreAnterior = campoNombre.getText();
                  
                 btn.setGraphic(imgEscribi[0]);
                 campoNombre.setDisable(true);

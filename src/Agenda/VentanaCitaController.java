@@ -153,7 +153,7 @@ public class VentanaCitaController implements Initializable {
     
     public void guardarCambios(){
         System.out.println("Guardando todo");
-        CitaDAO baseD = new CitaSql();
+        CitaSql baseD = new CitaSql();
         CitaDTO citaAux = null;
         
         try{

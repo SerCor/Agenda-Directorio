@@ -5,6 +5,8 @@
  */
 package Agenda;
 
+import DAO.ContactoDAO;
+import DAO.ContactoEmpresarialSql;
 import DAO.ContactoPersonalSql;
 import DTO.ContactoPersonalDTO;
 import DTO.DirectorioPersonalDTO;
@@ -117,6 +119,15 @@ public class VentanaContactoPersonalController implements Initializable {
             String email = campoEmail.getText();
             String parentesco = campoParentesco.getText();
             
+            //Verificacion de si existe un contacto con este nombre
+            ContactoDAO baseD = new ContactoPersonalSql();
+            ContactoDAO baseD2 = new ContactoEmpresarialSql();
+            if(baseD.select(controllerPrincipal.getUsuario().getIdTrabajador(), nombre) || baseD2.select(controllerPrincipal.getUsuario().getIdTrabajador(),nombre)){
+                //Se encontro contacto con el mismo nombre
+                throw new Exception("Error. Nombre de contacto ya existente.");
+            }
+                
+            
             //Creacion e almacenamiento de nuevo objeto
             ContactoPersonalSql dirB = new ContactoPersonalSql();
 //    public ContactoPersonalDTO(String id_trabajador,String nombre,String telefonoFijo,String telefonoCelular,String direccionPostal,String email,String parentesco){W
@@ -127,9 +138,10 @@ public class VentanaContactoPersonalController implements Initializable {
             Stage ventana =(Stage) campoNombre.getScene().getWindow();
             ventana.close();
         }catch(SQLException e){
-            controllerPrincipal.mostrarVentanaError("Error. Es posible que ya existe un contacto con este nombre.");
+            e.printStackTrace();
+            etiquetaError.setText("Error. No fue posible la conexión con la base de datos.");
         }catch(Exception er){
-            controllerPrincipal.mostrarVentanaError(er.getMessage());
+            etiquetaError.setText(er.getMessage());
         }
         
         

@@ -22,7 +22,7 @@ public class ContactoPersonalSql implements ContactoDAO{
     private final String SQL_INSERT = "INSERT INTO Contacto_personal (Usuario_id_trabajador,nombre,direccionPostal ,email,parentesco,telefono,teldefonoCelular) VALUES(?,?,?,?,?,?,?)";
     private final String SQL_UPDATE = "UPDATE Contacto_personal  SET nombre=?,direccionPostal =?,email=?,telefono=?,teldefonoCelular=?,parentesco=? WHERE id_contacto=?";
     private final String SQL_DELETE = "DELETE FROM Contacto_personal  WHERE id_contacto= ?";
-    //private final String SQL_SELECT_FECHA = "SELECT  Usuario_id_contacto,Usuario_id_trabajador,nombre_empresa,direccionPostal ,email,giro,telefono,nombre_representante FROM Contacto_personal  WHERE id_contacto=?";
+    private final String SQL_SELECT = "SELECT email FROM Contacto_personal WHERE Usuario_id_trabajador=? AND nombre=?";
     private final String SQL_SELECT_TRABAJADOR = "SELECT nombre FROM Contacto_personal WHERE Usuario_id_trabajador = ?";
     
     public ContactoPersonalSql() {
@@ -149,30 +149,21 @@ public class ContactoPersonalSql implements ContactoDAO{
         return lista;
     }
 
-    /*public ContactoPersonalDTO select() throws SQLException {
+        public boolean select(String id_usuario,String nombre_Contacto) throws SQLException,IllegalArgumentException {
+    //private final String SQL_SELECT_ = "SELECT  id_contacto,Usuario_id_trabajador,direccionPostal,email,giro,telefono,nombre_representante FROM Contacto_empresarial WHERE Usuario_id_trabajador=? nombre=?";
+
     //int id,int id_trabajador,String nombre,String telefono_fijo,String telefono_celular,String direccion_postal,String email,String parentesco
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ContactoPersonalDTO contacto = null;
         try {
-                conn = (this.userConn != null) ? this.userConn : Conexion.getConnection();
-                stmt = conn.prepareStatement(SQL_SELECT_FECHA);
-                rs = stmt.executeQuery();
-               int index = 1;
-               int id_contacto =  rs.getInt(index++);
-               int id_trabajador = rs.getInt(index++);
-               String nombre = rs.getString(index++);
-               String telefonoFijo = rs.getString(index++);
-               String telefonoCelular = rs.getString(index++);
-               String direccionPostal = rs.getString(index++);
-               String email = rs.getString(index++);
-               String parentesco = rs.getString(index++);
-
-           
-    //int id,int id_trabajador,String nombre,String telefono_fijo,String telefono_celular,String direccion_postal,String email,String parentesco
-           contacto = new ContactoPersonalDTO(id_contacto,id_trabajador,nombre,telefonoFijo,telefonoCelular,direccionPostal,email,parentesco);
-           
+            conn = (this.userConn != null) ? this.userConn : Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT);
+            stmt.setString(1,id_usuario);
+            stmt.setString(2,nombre_Contacto);
+            rs = stmt.executeQuery();
+            return (rs.next());
            
         } finally {
             Conexion.close(rs);
@@ -181,7 +172,6 @@ public class ContactoPersonalSql implements ContactoDAO{
                 Conexion.close(conn);
             }
         }
-        return contacto;
-    }*/
+    }
     
 }

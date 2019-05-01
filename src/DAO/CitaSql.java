@@ -22,7 +22,8 @@ public class CitaSql implements CitaDAO {
     private Connection userConn;
 
     private final String SQL_INSERT = "INSERT INTO Cita(Usuario_id_trabajador,citado, fecha,hora_inicio,hora_final,lugar,asunto) VALUES(?,?,?,?,?,?,?)";
-    private final String SQL_UPDATE = "UPDATE Cita SET citado=?,fecha=?,hora_inicio=?,hora_final=?,lugar=?,asunto=? WHERE id_cita=?";
+    private final String SQL_UPDATE = "UPDATE Cita SET citado=? WHERE Usuario_id_trabajador=? AND citado=?";
+     private final String SQL_UPDATE_COMPLETO = "UPDATE Cita SET citado=?,fecha=?,hora_inicio=?,hora_final=?,lugar=?,asunto=? WHERE id_cita=?";
     private final String SQL_DELETE = "DELETE FROM Cita WHERE id_cita= ?";
     private final String SQL_DELETE_ID_USUARIO = "DELETE FROM Cita WHERE citado = ? AND Usuario_id_trabajador = ?";
     private final String SQL_SELECT = "select Usuario_id_trabajador,citado, fecha,hora_inicio,hora_final,lugar,asunto FROM Cita WHERE id_cita=?";
@@ -63,8 +64,8 @@ public class CitaSql implements CitaDAO {
 
         return rows;
     }
+
     
-    @Override
     public int update(CitaDTO cita)
             throws SQLException {
         Connection conn = null;
@@ -72,7 +73,7 @@ public class CitaSql implements CitaDAO {
         int rows = 0;
         try {
             conn = (this.userConn != null) ? this.userConn : Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_UPDATE);
+            stmt = conn.prepareStatement(SQL_UPDATE_COMPLETO);
             int index = 1;
             stmt.setString(index++, cita.getContacto());
             stmt.setString(index++, cita.getFecha().toString());
@@ -81,6 +82,31 @@ public class CitaSql implements CitaDAO {
             stmt.setString(index++, cita.getLugar());
             stmt.setString(index++, cita.getAsunto());
             stmt.setInt(index++,cita.getId());
+            rows = stmt.executeUpdate();
+        } finally {
+            Conexion.close(stmt);
+            if (this.userConn == null) {
+                Conexion.close(conn);
+            }
+        }
+        return rows;
+    }
+    
+    
+    @Override
+    //    private final String SQL_UPDATE = "UPDATE Cita SET citado=? WHERE Usuario_id_trabajador=? AND citado=?";
+    public int update(String NuevoCitado,String id_trabajador,String citado)
+            throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = (this.userConn != null) ? this.userConn : Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_UPDATE);
+            int index = 1;
+            stmt.setString(index++, NuevoCitado);
+            stmt.setString(index++, id_trabajador);
+            stmt.setString(index++, citado);
             rows = stmt.executeUpdate();
         } finally {
             Conexion.close(stmt);

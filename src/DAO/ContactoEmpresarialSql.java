@@ -26,7 +26,7 @@ public class ContactoEmpresarialSql implements ContactoDAO {
     private final String SQL_INSERT = "INSERT INTO Contacto_empresarial(Usuario_id_trabajador,nombre_empresa,direccionPostal,email,giro,telefono,nombre_representante) VALUES(?,?,?,?,?,?,?)";
     private final String SQL_UPDATE = "UPDATE Contacto_empresarial  SET nombre_empresa=?,direccionPostal=?,email=?,giro=?,telefono=?,nombre_representante=? WHERE id_contacto=?";
     private final String SQL_DELETE = "DELETE FROM Contacto_empresarial WHERE id_contacto= ?";
-    private final String SQL_SELECT_FECHA = "SELECT  id_contacto,Usuario_id_trabajador,direccionPostal,email,giro,telefono,nombre_representante FROM Contacto_empresarial WHERE Usuario_id_trabajador=?";
+    private final String SQL_SELECT = "SELECT email FROM Contacto_empresarial WHERE Usuario_id_trabajador=? AND nombre_empresa=?";
     private final String SQL_SELECT_TRABAJADOR = "SELECT nombre_empresa FROM Contacto_empresarial WHERE Usuario_id_trabajador = ?";
 
     public ContactoEmpresarialSql() {
@@ -157,30 +157,21 @@ public class ContactoEmpresarialSql implements ContactoDAO {
         return lista;
     }
 
-   /* public ContactoEmpresarialDTO select() throws SQLException {
+       public boolean select(String id_usuario,String nombre_Contacto) throws SQLException,IllegalArgumentException {
         //id_contacto,id_trabajador,nombre_empresa,telefono,direccion,email,giro,nombre_representante
+        //private final String SQL_SELECT_ = "SELECT  id_contacto,Usuario_id_trabajador,direccionPostal,email,giro,telefono,nombre_representante FROM Contacto_empresarial WHERE Usuario_id_trabajador=? nombre=?";
+
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ContactoEmpresarialDTO contacto = null;
         try {
             conn = (this.userConn != null) ? this.userConn : Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_FECHA);
+            stmt = conn.prepareStatement(SQL_SELECT);
+            stmt.setString(1,id_usuario);
+            stmt.setString(2,nombre_Contacto);
             rs = stmt.executeQuery();
-            int index = 1;
-           int id_contacto =  rs.getInt(index++);
-           int id_trabajador = rs.getInt(index++);
-           String nombre_empresa =rs.getString(index++);
-           String telefono = rs.getString(index++);
-           String direccion  = rs.getString(index++);
-           String email = rs.getString(index++);
-           String giro = rs.getString(index++); 
-           String nombre_representante = rs.getString(index++);
-           
-           //(int id,int id_trabajador,String nombre,String telefono,String direccionPostal,String email,String giro,String representante)
-           contacto = new ContactoEmpresarialDTO(id_contacto,id_trabajador,nombre_empresa,telefono,direccion,email,giro,nombre_representante);
-           
-           
+            return (rs.next());
         } finally {
             Conexion.close(rs);
             Conexion.close(stmt);
@@ -188,8 +179,8 @@ public class ContactoEmpresarialSql implements ContactoDAO {
                 Conexion.close(conn);
             }
         }
-        return contacto;
-    }*/
+        
+    }
     
     
 }

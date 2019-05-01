@@ -5,7 +5,9 @@
  */
 package Agenda;
 
+import DAO.ContactoDAO;
 import DAO.ContactoEmpresarialSql;
+import DAO.ContactoPersonalSql;
 import DTO.ContactoEmpresarialDTO;
 import DTO.ContactoPersonalDTO;
 import java.net.URL;
@@ -112,7 +114,17 @@ public class VentanaContactoEmpresarialController implements Initializable {
             String email = campoEmail.getText();
             String giro = campoGiro.getText();
             String nombreResponsable = campoResponsable.getText();
+ 
         try{
+            
+            //Verificacion de si existe un contacto con este nombre
+            ContactoDAO baseD = new ContactoPersonalSql();
+            ContactoDAO baseD2 = new ContactoEmpresarialSql();
+            if(baseD.select(controllerPrincipal.getUsuario().getIdTrabajador(), nombre) || baseD2.select(controllerPrincipal.getUsuario().getIdTrabajador(),nombre)){
+                //Se encontro contacto con el mismo nombre
+                throw new Exception("Error. Nombre de contacto ya existente.");
+            }
+            
             ContactoEmpresarialSql dirB = new ContactoEmpresarialSql();
 //public ContactoEmpresarialDTO(String id_trabajador,String nombre,String telefono,String direccionPostal,String email,String giro,String representante){
             ContactoEmpresarialDTO contacto = new ContactoEmpresarialDTO(controllerPrincipal.getUsuario().getIdTrabajador(),nombre.toUpperCase(),telefono,direccionPostal.toUpperCase(),email.toUpperCase(),giro.toUpperCase(),nombreResponsable.toUpperCase());
@@ -123,9 +135,10 @@ public class VentanaContactoEmpresarialController implements Initializable {
             Stage ventana =(Stage) campoEmpresa.getScene().getWindow();
             ventana.close();
         }catch(SQLException e){
-            controllerPrincipal.mostrarVentanaError("Error. Es posible que ya existe un contacto con este nombre.");
+            e.printStackTrace();
+            etiquetaError.setText("Error. No fue posible la conexión con la base de datos.");
         }catch(Exception ex){
-           controllerPrincipal.mostrarVentanaError(ex.getMessage());
+           etiquetaError.setText(ex.getMessage());
         }
     }
     

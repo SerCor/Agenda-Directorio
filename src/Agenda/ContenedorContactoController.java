@@ -5,6 +5,7 @@ import DAO.CitaDAO;
 import DAO.CitaSql;
 import DAO.ContactoDAO;
 import DAO.ContactoEmpresarialSql;
+import DAO.ContactoPersonalSql;
 import DTO.ContactoEmpresarialDTO;
 import DTO.TrabajadorDTO;
 import java.net.URL;
@@ -47,6 +48,7 @@ public class ContenedorContactoController implements Initializable {
    @FXML Button actualizarEmail;
    @FXML Button actualizarResponsable;
    @FXML Label etiquetaError;
+   private String nombreAnterior;
    
     final private Image imgGuardar = new Image(getClass().getResource("guardar.png").toString(),20,20,false,true);
     final private Image imgEscribir = new Image(getClass().getResource("escribir.png").toString(),20,20,false,true);
@@ -54,6 +56,7 @@ public class ContenedorContactoController implements Initializable {
     private ImageView imgEscribi[];
     private ContenedorDirectorioController controllerDirectorio;
     private VentanaPrincipalController controllerPrincipal;
+    private String campoAnterior;
     
     public void setControllerPrincipal(VentanaPrincipalController controller){
         controllerPrincipal = controller;
@@ -78,6 +81,7 @@ public class ContenedorContactoController implements Initializable {
             
             //Nombre
             campoEmpresa.setText(contacto.getNombre());
+            nombreAnterior = contacto.getNombre();
             
             //Telefono
             campoTelefono.setText(contacto.getTelefono());
@@ -124,8 +128,26 @@ public class ContenedorContactoController implements Initializable {
         if(btn  == actualizarEmpresa ){     
             //Nombre Empresa
             if(img.equals(imgGuarda[0])){
+                campoEmpresa.setText(campoEmpresa.getText().toUpperCase());
                 if(campoEmpresa.getText().isEmpty())
                     throw new Exception("Error. Rellena el campo empresa.");
+                 //Verificacion de si existe un contacto con este nombre
+            ContactoDAO baseD = new ContactoPersonalSql();
+            ContactoDAO baseD2 = new ContactoEmpresarialSql();
+            
+            //Verifica si realmente se hicieron cambios
+            if(!nombreAnterior.equals(campoEmpresa.getText())){
+                if(baseD.select(controllerPrincipal.getUsuario().getIdTrabajador(), campoEmpresa.getText()) || baseD2.select(controllerPrincipal.getUsuario().getIdTrabajador(),campoEmpresa.getText())){
+                    //Se encontro contacto con el mismo nombre
+                    throw new Exception("Error. Nombre de contacto ya existente.");
+                 }
+            }
+ 
+            //Actualiza las citas con el mismo nombre
+                CitaDAO baseD3 = new CitaSql();
+                baseD3.update(campoEmpresa.getText(), controllerPrincipal.getUsuario().getIdTrabajador(),nombreAnterior);
+                
+                nombreAnterior = campoEmpresa.getText();
                 
                 btn.setGraphic(imgEscribi[0]);
                 campoEmpresa.setDisable(true);
