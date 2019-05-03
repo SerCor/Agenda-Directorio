@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -213,6 +215,13 @@ public class ContenedorContactoController implements Initializable {
            if(img.equals(imgGuarda[4])){
             if(campoEmail.getText().isEmpty())
                     throw new Exception("Error. Rellena el campo email.");
+            
+            //Validacion de correo
+               String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";  
+               Pattern pattern = Pattern.compile(emailPattern);
+               Matcher matcher = pattern.matcher(campoEmail.getText().toLowerCase());
+               if (!matcher.matches()) 
+                 throw new Exception("Error. Formato de email invalido.");
             
                 btn.setGraphic(imgEscribi[4]);      
                 campoEmail.setDisable(true);

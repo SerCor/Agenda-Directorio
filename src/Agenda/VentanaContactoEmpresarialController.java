@@ -13,6 +13,8 @@ import DTO.ContactoPersonalDTO;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -72,6 +74,13 @@ public class VentanaContactoEmpresarialController implements Initializable {
             
             if(nombre.equals("") || telefono.equals("")  || direccionPostal.equals("") || email.equals("") || giro.equals(""))
                 throw new Exception("Error. No se puede dejar campos obligatorios vacíos.");
+            
+            //Validacion de correo
+            String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";  
+            Pattern pattern = Pattern.compile(emailPattern);
+            Matcher matcher = pattern.matcher(email.toLowerCase());
+            if (!matcher.matches()) 
+              throw new Exception("Error. Formato de email invalido.");
             
             if(nombre.length() >= 46)
                 campoEmpresa.setText(nombre.substring(0, 45));

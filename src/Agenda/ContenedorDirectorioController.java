@@ -63,6 +63,7 @@ public class ContenedorDirectorioController implements Initializable {
     
     @FXML
     public void buscarContactoEmpresarial(KeyEvent e){
+        /*Detecta Enter sobre el Input Text para proseguir a buscar el contacto dentro de los contenedores */
         if(e.getCode().equals(KeyCode.ENTER)){
             try{
                 System.out.println("Buscando contacto empresarial");
@@ -77,8 +78,8 @@ public class ContenedorDirectorioController implements Initializable {
                     loader =(FXMLLoader) contenedorContacto.getUserData();
                     ContenedorContactoController controller =(ContenedorContactoController) loader.getController();
                     if(controller.campoEmpresa.getText().equals(campoBusquedaEmpresa.getText().toUpperCase())){
+                        ensureVisible(scrollDirectorioEmpresarial,contenedorContacto);
                         System.out.println("Encontrado");
-                        scrollDirectorioEmpresarial.setVvalue(contenedorContacto.heightProperty().doubleValue()); 
                         flagEncontrado = true;
                     }
                 }
@@ -92,8 +93,9 @@ public class ContenedorDirectorioController implements Initializable {
     
     @FXML
     public void buscarContactoPersonal(KeyEvent e){
+        
         if(e.getCode().equals(KeyCode.ENTER)){
-            if(e.getCode().equals(KeyCode.ENTER)){
+
             try{
                 System.out.println("Buscando contacto personal");
                 e.consume();
@@ -106,9 +108,9 @@ public class ContenedorDirectorioController implements Initializable {
                     contenedorContacto =  (GridPane) itr.next();
                     loader =(FXMLLoader) contenedorContacto.getUserData();
                     ContenedorContactoPersonalController controller =(ContenedorContactoPersonalController) loader.getController();
-                    if(controller.campoNombre.getText().equals(campoBusquedaPersona.getText().toUpperCase())){
-                        scrollDirectorioPersonal.setVvalue(contenedorContacto.heightProperty().doubleValue());                        
+                    if(controller.campoNombre.getText().equals(campoBusquedaPersona.getText().toUpperCase())){                       
                         System.out.println("Encontrado");
+                        ensureVisible(scrollDirectorioPersonal,contenedorContacto);
                         flagEncontrado = true;
                     }
                 }
@@ -116,10 +118,25 @@ public class ContenedorDirectorioController implements Initializable {
                 ex.printStackTrace();
                 controllerPrincipal.mostrarVentanaError("Error. No fue posible hacer la busqueda del contacto.");
             }
-        }
-            
+   
         }
         
+    }
+    
+     private static void ensureVisible(ScrollPane pane, Node node) {
+        double width = pane.getContent().getBoundsInLocal().getWidth();
+        double height = pane.getContent().getBoundsInLocal().getHeight();
+        
+        //TODO: Falta determinar cual es la coordenada del contenedor
+        double x = node.getParent().getBoundsInParent().getMinX();
+        double y = node.getParent().getBoundsInParent().getMinY();
+
+        // scrolling values range from 0 to 1
+        pane.setVvalue(y/height);
+        pane.setHvalue(x/width);
+
+        // just for usability
+        node.requestFocus();
     }
     
     @FXML 

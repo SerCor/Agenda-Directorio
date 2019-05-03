@@ -14,6 +14,8 @@ import DTO.ContactoPersonalDTO;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -206,8 +208,14 @@ public class ContenedorContactoPersonalController implements Initializable {
                if(campoEmail.getText().isEmpty())
                     throw new Exception("Eror. Rellena el campo email.");
                
-                btn.setGraphic(imgEscribi[4]);
-                String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
+                    //Validacion de correo
+                 String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";  
+                 Pattern pattern = Pattern.compile(emailPattern);
+                 Matcher matcher = pattern.matcher(campoEmail.getText().toLowerCase());
+                 if (!matcher.matches()) 
+                   throw new Exception("Error. Formato de email invalido.");
+                 
+                 btn.setGraphic(imgEscribi[4]);
                 campoEmail.setDisable(true);
                 etiquetaError.setText("");
                 actualizarBase = true;
