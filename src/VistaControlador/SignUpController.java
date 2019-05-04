@@ -1,5 +1,5 @@
 
-package Agenda;
+package VistaControlador;
 
 import DB.TrabajadorDAO;
 import DB.TrabajadorSQL;

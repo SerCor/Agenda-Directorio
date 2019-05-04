@@ -1,5 +1,5 @@
 
-package Agenda;
+package VistaControlador;
 
 import DAO.CitaDAO;
 import DAO.CitaSql;
@@ -104,6 +104,8 @@ public class ContenedorContactoController implements Initializable {
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        /*Inicializa imagenes necesarias para modificar/guardar cada campo*/
         imgGuarda = new ImageView[6];
         imgEscribi = new ImageView[6];
         
@@ -123,19 +125,31 @@ public class ContenedorContactoController implements Initializable {
 
     @FXML
     private void habilitarCampo(ActionEvent e) {
+        
+        /*Evento generado cuando se selecciona el boton de modificar/guarar un campo.
+            *Determina en que estado se encuentra el campo y deshabilita/habilita el campo/
+            *Hace validaciones de campos obligatorios y validaciones de formato en campo email.
+            *Hace validacion de que el campo nombre no sea repetido.
+        */
+        
+        //Determina fuente del evento
         Button btn = ((Button)e.getSource());
         ImageView img = (ImageView)btn.getGraphic();
         boolean actualizarBase = false;
+        
+        //Determina que campo es el implicado en el evento
     try{
         if(btn  == actualizarEmpresa ){     
             //Nombre Empresa
             if(img.equals(imgGuarda[0])){
                 campoEmpresa.setText(campoEmpresa.getText().toUpperCase());
+                
                 if(campoEmpresa.getText().isEmpty())
                     throw new Exception("Error. Rellena el campo empresa.");
+                
                  //Verificacion de si existe un contacto con este nombre
-            ContactoDAO baseD = new ContactoPersonalSql();
-            ContactoDAO baseD2 = new ContactoEmpresarialSql();
+                ContactoDAO baseD = new ContactoPersonalSql();
+                ContactoDAO baseD2 = new ContactoEmpresarialSql();
             
             //Verifica si realmente se hicieron cambios
             if(!nombreAnterior.equals(campoEmpresa.getText())){
@@ -148,7 +162,6 @@ public class ContenedorContactoController implements Initializable {
             //Actualiza las citas con el mismo nombre
                 CitaDAO baseD3 = new CitaSql();
                 baseD3.update(campoEmpresa.getText(), controllerPrincipal.getUsuario().getIdTrabajador(),nombreAnterior);
-                
                 nombreAnterior = campoEmpresa.getText();
                 
                 btn.setGraphic(imgEscribi[0]);
@@ -269,6 +282,11 @@ public class ContenedorContactoController implements Initializable {
     
     @FXML
     public void eliminarContactoEmpresarial(ActionEvent e){
+        
+        /*Evento que se genera cuando se da click sobre el boton de eliminar en un contactoEmpresarial
+         *Contempla la eliminacion de las citas relacionadas con el contacto eliminado
+        */
+        
         ContactoDAO contact = new ContactoEmpresarialSql();
         Button btn  = (Button ) e.getSource();
         try {

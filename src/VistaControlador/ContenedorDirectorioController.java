@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agenda;
+
+package VistaControlador;
 
 import DAO.CitaDAO;
 import DAO.CitaSql;
@@ -49,11 +45,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-/**
- * FXML Controller class
- *
- * @author SerCo
- */
+
 public class ContenedorDirectorioController implements Initializable {
     @FXML ScrollPane scrollDirectorioEmpresarial;
     @FXML ScrollPane scrollDirectorioPersonal;
@@ -71,11 +63,17 @@ public class ContenedorDirectorioController implements Initializable {
     
     @FXML
     public void buscarContactoEmpresarial(KeyEvent e){
-        /*Detecta Enter sobre el Input Text para proseguir a buscar el contacto dentro de los contenedores */
+        /*Evento que se genera cuando se da un enter sobre el campo de busqueda de contactos empresarial
+            *Determnina en que contenedor esta el contacto y prosigue a hacer un scroll hacia el y poner el puntero del mouse sobre dicho contenedor.
+        */
+        
         if(e.getCode().equals(KeyCode.ENTER)){
+            //Determina si fue un enter
             try{
                 System.out.println("Buscando contacto empresarial");
                 e.consume();
+                
+                //Recolecta contenedor de todos los contactos empresarial
                 ObservableList<Node> contenedores = contenedorDirectorioEmpresarial.getChildren();
                 boolean flagEncontrado = false;
                 GridPane contenedorContacto = null;
@@ -83,18 +81,22 @@ public class ContenedorDirectorioController implements Initializable {
                 int posicion = 0;
                 Iterator itr = contenedores.iterator();
                 
-                
+                //Busca el contenedor relacionado con el contacto.
                 while(itr.hasNext() && !flagEncontrado){
                     posicion++;
                     contenedorContacto =  (GridPane) itr.next();
                     loader =(FXMLLoader) contenedorContacto.getUserData();
                     ContenedorContactoController controller =(ContenedorContactoController) loader.getController();
+                    
                     if(controller.campoEmpresa.getText().equals(campoBusquedaEmpresa.getText().toUpperCase())){
+                        //En caso de que lo encuentre hace el llamado a la funcion que hace el scroll y pone el puntero sobre el
                         ensureVisible(scrollDirectorioEmpresarial,contenedorContacto,posicion);
                         System.out.println("Encontrado");
                         flagEncontrado = true;
                     }
                 }
+                
+                
             }catch(Exception ex){
                 ex.printStackTrace();
                 controllerPrincipal.mostrarVentanaError("Error. No fue posible hacer la busqueda del contacto.");
@@ -106,11 +108,17 @@ public class ContenedorDirectorioController implements Initializable {
     @FXML
     public void buscarContactoPersonal(KeyEvent e){
         
+            /*Evento que se genera cuando se da un enter sobre el campo de busqueda de contactos personal
+            *Determnina en que contenedor esta el contacto y prosigue a hacer un scroll hacia el y poner el puntero del mouse sobre dicho contenedor.
+            */
+            
         if(e.getCode().equals(KeyCode.ENTER)){
 
             try{
                 System.out.println("Buscando contacto personal");
                 e.consume();
+                
+                //Recolecta todos los contenedores de contactos personales
                 ObservableList<Node> contenedores = contenedorDirectorioPersonal.getChildren();
                 GridPane contenedorContacto = null;
                 FXMLLoader loader = null;
@@ -118,12 +126,14 @@ public class ContenedorDirectorioController implements Initializable {
                 boolean flagEncontrado =false;
                 int posicion  = 0;
                 
+                //Busca el contenedor que contiene el contacto personal buscado
                 while(itr.hasNext() && !flagEncontrado){
                     posicion++;
                     contenedorContacto =  (GridPane) itr.next();
                     loader =(FXMLLoader) contenedorContacto.getUserData();
                     ContenedorContactoPersonalController controller =(ContenedorContactoPersonalController) loader.getController();
-                    if(controller.campoNombre.getText().equals(campoBusquedaPersona.getText().toUpperCase())){                       
+                    if(controller.campoNombre.getText().equals(campoBusquedaPersona.getText().toUpperCase())){  
+                        //En caso de ser encontrado llama a la funcion encarga de hacer scroll hacia el y poner el puntero del mouse sobre dicho contenedor.
                         System.out.println("Encontrado");
                         ensureVisible(scrollDirectorioPersonal,contenedorContacto,posicion);
                         flagEncontrado = true;
@@ -139,25 +149,22 @@ public class ContenedorDirectorioController implements Initializable {
     }
     
      private  void ensureVisible(ScrollPane pane, Node node,int posicionContenedor)  {
+         
+         /*Funcion auxiliar que se encarga de hacer scroll hacia un nodo en especifico y posterior a eso poner el puntero del mouse sobre dicho contenedor*/
+         
+         //Determina posicion de scroll
         double height = pane.getContent().getBoundsInLocal().getHeight();
-        
-        node.getBoundsInParent().getMinX();
-        double altoContenedor = node.getBoundsInParent().getHeight();
-        double posFinal = altoContenedor * (posicionContenedor+1); // Posicion Inicial del contenedor del contacto que se busca.
-        
         Bounds bounds = pane.getViewportBounds();
-        node.requestFocus();
-
-        int desviacion = 0;
         pane.setVvalue(contenedorDirectorioEmpresarial.getChildren().get((int)posicionContenedor-1).getLayoutY() * (1/(contenedorDirectorioEmpresarial.getHeight()-bounds.getHeight())));
 
-
+        
+        
+        //Determina movimiento del cursor del mouse hacia el contenedor
         Bounds bound = node.localToScreen(node.getBoundsInLocal());
         Toolkit tool = Toolkit.getDefaultToolkit();
         Dimension dim = tool.getScreenSize();
         
         try{
-            
             MouseCorrectRobot robot = new MouseCorrectRobot();
             int x = 200;
             robot.MoveMouseControlled(((bound.getMinX()+ bound.getMaxX())/2)/dim.getWidth(),((bound.getMinY()+ bound.getMaxY())/2)/dim.getHeight());
@@ -170,6 +177,7 @@ public class ContenedorDirectorioController implements Initializable {
     
     @FXML 
     public void bloquearEnter(KeyEvent e){
+        /*Consume enter*/
         System.out.println("ENTER DETECTADO");
         e.consume();
     }
@@ -196,15 +204,17 @@ public class ContenedorDirectorioController implements Initializable {
     }
     
      public void actualizarDirectorioPersonal(){
-        /*Listar todos los contactos Personales del trabajador */
-        
-        
+        /*Listar todos los contactos Personales del trabajador en el momento actual */
+   
     try{
         System.out.println("Inicializacion de directorio personal");
+        
+        //Recolecta contactos personales de la base de datos.
         DirectorioPersonalSql baseD = new DirectorioPersonalSql();  
         Directorio directorio =  baseD.getDirectorio(usuario);
         contenedorDirectorioPersonal.getChildren().clear();
         
+        //Rellena contenedores con todos los contactos actuales
         List<ContactoDTO> contactos = directorio.getContactos();
         Iterator itr = contactos.iterator();
         TextField campo = null;
@@ -223,12 +233,14 @@ public class ContenedorDirectorioController implements Initializable {
             //Agregar contacto
             contenedorDirectorioPersonal.getChildren().add(contenedorContacto);
         }
-         }catch(SQLException e){
+        
+        
+    }catch(SQLException e){
           //No fue posible recolectar el directorio
-          System.out.println("Error. No fue posible recolectar el directorio");
+          controllerPrincipal.mostrarVentanaError("Error. No fue posible conectarse a la base de datos");
         e.printStackTrace();
     }catch(Exception e){
-        System.out.println("Error en el procesamiento del directorio");
+        controllerPrincipal.mostrarVentanaError("Error. No fue posible listar los contactos");
         e.printStackTrace();
     }
     }
@@ -280,8 +292,11 @@ public class ContenedorDirectorioController implements Initializable {
     
     
     @FXML public void agregarContactoEmpresarial(ActionEvent e) {
-        // Mostrar una ventana para crear un contacto empresarial
+        // Generar una ventana que maneje la creacion de un contacto empresarial
+        
         try{
+            
+            //Generacion de ventana relacionada con nuevo contacto empresarial
             Stage ventana = new Stage();
             ventana.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaContactoEmpresarial.fxml"));
@@ -295,6 +310,7 @@ public class ContenedorDirectorioController implements Initializable {
             ventana.initModality(Modality.WINDOW_MODAL);
             ventana.initOwner(((Node)e.getSource()).getScene().getWindow());
             ventana.show();
+            
         }catch(Exception ex){
             ex.printStackTrace();
             controllerPrincipal.mostrarVentanaError("Error. No fue posible generar el entorno para la creación de un contacto.");
@@ -306,8 +322,12 @@ public class ContenedorDirectorioController implements Initializable {
     }
     
     @FXML public void agregarContactoPersonal(ActionEvent e){
-        // Mostrar una ventana para crear un contacto personal
+         // Generar una ventana que maneje la creacion de un contacto personal
+         
+         
         try{
+            //Generacion de ventana relacionada con nuevo contacto empresarial
+
             Stage ventana = new Stage();
             ventana.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaContactoPersonal.fxml"));
@@ -321,6 +341,7 @@ public class ContenedorDirectorioController implements Initializable {
             ventana.initModality(Modality.WINDOW_MODAL);
             ventana.initOwner(((Node)e.getSource()).getScene().getWindow());
             ventana.show();
+            
         }catch(Exception exx){
             exx.printStackTrace();
             controllerPrincipal.mostrarVentanaError("Error. No fue posible generar el entorno para la creación de un contacto.");
@@ -329,7 +350,9 @@ public class ContenedorDirectorioController implements Initializable {
     }
     
     
-    public void eliminarContactoEmpresarial(ContactoEmpresarialDTO contacto){      
+    public void eliminarContactoEmpresarial(ContactoEmpresarialDTO contacto){    
+        /* Metodo encargado de eliminar un contacto empresarial y todas las citas relacionadas con el*/
+        
             Directorio dir = usuario.getDirEmpresarial();
             if(!dir.eliminarContacto(contacto))
                 controllerPrincipal.mostrarVentanaError("Error. No fue posible eliminar el contacto de la base de datos");
@@ -348,6 +371,9 @@ public class ContenedorDirectorioController implements Initializable {
     }
 
     public void eliminarContactoPersonal(ContactoPersonalDTO contacto){
+        /*Metodo encargado de borrar un contacto personal y todas las citas relacionadas con el
+        
+        */
         Directorio dir = usuario.getDirPersonal();
         if(dir.eliminarContacto(contacto))
             controllerPrincipal.mostrarVentanaError("Error. No fue posible eliminar el contacto de la base de datos");

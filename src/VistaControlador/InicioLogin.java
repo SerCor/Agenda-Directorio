@@ -1,5 +1,5 @@
 
-package Agenda;
+package VistaControlador;
 
 import DB.Db;
 import com.jfoenix.controls.JFXButton;

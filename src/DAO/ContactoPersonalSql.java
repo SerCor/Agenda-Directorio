@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import DTO.ContactoDTO;
@@ -35,6 +31,8 @@ public class ContactoPersonalSql implements ContactoDAO{
     
     public int insert(ContactoDTO contact) throws SQLException,IllegalArgumentException{
     //int id,int id_trabajador,String nombre,String telefonoFijo,String telefonoCelular,String direccionPostal,String email,String parentesco
+    //Inserta un nuevo contacto
+    
     if(!(contact instanceof ContactoPersonalDTO))
             throw new IllegalArgumentException();
         ContactoPersonalDTO contacto = (ContactoPersonalDTO) contact;
@@ -68,7 +66,8 @@ public class ContactoPersonalSql implements ContactoDAO{
             throws SQLException,IllegalArgumentException {
     //int id,int id_trabajador,String nombre,String telefonoFijo,String telefonoCelular,String direccionPostal,String email,String parentesco
     //    private final String SQL_UPDATE = "UPDATE Contacto_personal  SET nombre=?,direccionPostal =?,email=?,telefono=?,telefonoCelular=?,parentesco=? WHERE id_contacto=?";
-
+    //Actualiza un contacto
+    
     if(!(contact instanceof ContactoPersonalDTO))
             throw new IllegalArgumentException();
         ContactoPersonalDTO contacto = (ContactoPersonalDTO) contact;
@@ -102,6 +101,8 @@ public class ContactoPersonalSql implements ContactoDAO{
      */
     public int delete(ContactoDTO contact) throws SQLException,IllegalArgumentException {
     //int id,int id_trabajador,String nombre,String telefonoFijo,String telefonoCelular,String direccionPostal,String email,String parentesco
+    //Elimina contacto
+    
     if(!(contact instanceof ContactoPersonalDTO))
             throw new IllegalArgumentException();
         ContactoPersonalDTO contacto = (ContactoPersonalDTO) contact;
@@ -123,6 +124,8 @@ public class ContactoPersonalSql implements ContactoDAO{
     }
     
     public List<String> getNombresContactos(String id) throws SQLException{
+        //Retorna nombres de los contactos relacionadas con u id_trabajador
+        
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;

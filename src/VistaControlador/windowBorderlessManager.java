@@ -1,4 +1,4 @@
-package Agenda;
+package VistaControlador;
 
 import DTO.TrabajadorDTO;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;

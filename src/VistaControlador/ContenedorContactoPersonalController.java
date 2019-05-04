@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agenda;
+
+package VistaControlador;
 
 import DAO.CitaDAO;
 import DAO.CitaSql;
@@ -29,11 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-/**
- * FXML Controller class
- *
- * @author SerCo
- */
+
 public class ContenedorContactoPersonalController implements Initializable {
     private ContactoPersonalDTO contacto ;
    @FXML TextField campoNombre;
@@ -115,6 +107,13 @@ public class ContenedorContactoPersonalController implements Initializable {
 
     @FXML
     private void habilitarCampo(ActionEvent e) {
+        
+         /*Evento generado cuando se selecciona el boton de modificar/guarar un campo.
+            *Determina en que estado se encuentra el campo y deshabilita/habilita el campo/
+            *Hace validaciones de campos obligatorios y validaciones de formato en campo email.
+            *Hace validacion de que el campo nombre no sea repetido.
+        */
+         
         Button btn = ((Button)e.getSource());
         ImageView img = (ImageView)btn.getGraphic();
         boolean actualizarBase  = false;
@@ -259,6 +258,10 @@ public class ContenedorContactoPersonalController implements Initializable {
     
     @FXML
     public void eliminarContactoPersonal(ActionEvent e){
+        
+        /*Evento que se genera cuando se da click sobre un boton de eliminar en un contacto personal
+            *Contempla la eliminacion de las citas relacionadas con el contacto eliminado
+        */
         ContactoPersonalSql contact = new ContactoPersonalSql();
         Button btn = (Button) e.getSource();
         try {

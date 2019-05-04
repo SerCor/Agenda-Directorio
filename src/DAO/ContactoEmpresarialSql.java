@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import DTO.CitaDTO;
@@ -16,10 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author SerCo
- */
+
 public class ContactoEmpresarialSql implements ContactoDAO {
     private Connection userConn;
     //id_contacto,id_trabajador,nombre_empresa,direccion,email,giro,telefono,nombre_representante
@@ -40,7 +33,7 @@ public class ContactoEmpresarialSql implements ContactoDAO {
     public int insert(ContactoDTO contact) throws SQLException,IllegalArgumentException{
         //id_contacto,id_trabajador,nombre_empresa,telefono,direccion,email,giro,nombre_representante
         //private final String SQL_INSERT = "INSERT INTO Contacto_empresarial(Usuario_id_trabajador,nombre_empresa,direccionPostal,email,giro,telefono,nombre_representante) VALUES(?,?,?,?,?,?,?)";
-
+        //Inserta nuevo contacto
         if(!(contact instanceof ContactoEmpresarialDTO))
             throw new IllegalArgumentException();
         ContactoEmpresarialDTO contacto = (ContactoEmpresarialDTO) contact;
@@ -74,7 +67,8 @@ public class ContactoEmpresarialSql implements ContactoDAO {
             throws SQLException,IllegalArgumentException {
         //id_contacto,id_trabajador,nombre_empresa,telefono,direccion,email,giro,nombre_representante
         //    private final String SQL_UPDATE = "UPDATE Contacto_empresarial  SET nombre_empresa=?,direccionPostal=?,email=?,giro=?,telefono=?,nombre_representante=? WHERE id_contacto=?";
-
+        //Actualiza informacion de un contacto
+        
         if(!(contact instanceof ContactoEmpresarialDTO))
             throw new IllegalArgumentException();
         ContactoEmpresarialDTO contacto = (ContactoEmpresarialDTO) contact;
@@ -111,7 +105,8 @@ public class ContactoEmpresarialSql implements ContactoDAO {
     public int delete(ContactoDTO contact) throws SQLException, IllegalArgumentException {
         //id_contacto,id_trabajador,nombre_empresa,telefono,direccion,email,giro,nombre_representante
         //    private final String SQL_DELETE = "DELETE FROM Contacto_empresarial WHERE id_contacto= ?";
-
+        //Elimina contacto
+        
         if(!(contact instanceof ContactoEmpresarialDTO))
             throw new IllegalArgumentException();
         ContactoEmpresarialDTO contacto = (ContactoEmpresarialDTO) contact;
@@ -133,6 +128,8 @@ public class ContactoEmpresarialSql implements ContactoDAO {
     }
     
     public List<String> getNombresContactos(String id) throws SQLException{
+        /*Retorna los nombres de los contactos relacionados con el id de un trabajador*/
+        
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -160,7 +157,8 @@ public class ContactoEmpresarialSql implements ContactoDAO {
        public boolean select(String id_usuario,String nombre_Contacto) throws SQLException,IllegalArgumentException {
         //id_contacto,id_trabajador,nombre_empresa,telefono,direccion,email,giro,nombre_representante
         //private final String SQL_SELECT_ = "SELECT  id_contacto,Usuario_id_trabajador,direccionPostal,email,giro,telefono,nombre_representante FROM Contacto_empresarial WHERE Usuario_id_trabajador=? nombre=?";
-
+        //Selecciona un contacto empresarial realacionado con un id_trabajador y un nombre*/
+           
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;

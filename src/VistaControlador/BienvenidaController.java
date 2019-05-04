@@ -1,5 +1,5 @@
 
-package Agenda;
+package VistaControlador;
 
 import DTO.TrabajadorDTO;
 import java.net.URL;

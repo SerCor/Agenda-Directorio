@@ -1,4 +1,4 @@
-package Agenda;
+package VistaControlador;
 import DAO.CitaDAO;
 import DAO.CitaSql;
 import DAO.ContactoDAO;
@@ -32,6 +32,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+/*Clase encargada de manejar una ventana que esta relacionada con la creacion/modificacion de una o mas citas nuevas/existentes*/
 
 public class VentanaCitaController implements Initializable {
     private List<CitaDTO> citasModificadas; //Contiene los id de las citas existentes
@@ -67,6 +69,8 @@ public class VentanaCitaController implements Initializable {
     
     
     public void setCitasNuevas(List<CitaDTO> citas){
+        /*Metodo que almacenada las citas nuevas a  las cuales va estar relacionado. Inicialmente asignara los datos de la primera cita ya existente que se eligio.*/
+      
          List<String> nombre = new ArrayList<>();
         try{
             DirectorioDAO baseD = new DirectorioEmpresarialSql();
@@ -95,6 +99,7 @@ public class VentanaCitaController implements Initializable {
     }
 
     public void setCitasModificas(List<CitaDTO> citas){
+        /*Metodo encargado de almacenar las citas existentes las cuales manejara. Toma la primera cita como la principal*/
         
         campoContacto.getItems().clear();
         List<String> nombre = new ArrayList<>();
@@ -123,9 +128,6 @@ public class VentanaCitaController implements Initializable {
             
         }
         
-        
-        
-   
         CitaDTO citaPrincipal = (citasModificadas.isEmpty())?citasNuevas.get(0):citasModificadas.get(0);//La primera cita va ser la cita a partir de la cual se van a hacer las modificaciones
         
         campoContacto.getSelectionModel().select(citaPrincipal.getContacto());
@@ -146,12 +148,14 @@ public class VentanaCitaController implements Initializable {
     
     @FXML
     public void guardarBoton(ActionEvent e){
-        /* Realiza insert para las nuevas citas y update para las consultas modificadas*/
+        /* Realiza insert para las nuevas citas y update para las consultas modificadas en caso de que el contenido de los campos haya sido valdiado*/
         if(comprobacionIntegridadCampos())
             guardarCambios();
     }
     
     public void guardarCambios(){
+        
+        /* Metodo encargado de guardar los datos en las citas a las cuales esta relacionada esta ventana. */
         System.out.println("Guardando todo");
         CitaSql baseD = new CitaSql();
         CitaDTO citaAux = null;
@@ -162,7 +166,7 @@ public class VentanaCitaController implements Initializable {
             String lugar = campoLugar.getText();
             String asunto = campoAsunto.getText();
             
-            
+            //Actualizar citas existentes
             Iterator itrModificadas = citasModificadas.iterator();
             while(itrModificadas.hasNext()){
                 System.out.println("Datos actualizados: " + citado +" " + lugar + " " + asunto);
@@ -173,7 +177,7 @@ public class VentanaCitaController implements Initializable {
                 baseD.update(citaAux);
             }
 
-            //Citas nuevas
+            //Citas nuevas. Crear citas nuevas
             Iterator itrNuevas = citasNuevas.iterator();
             while(itrNuevas.hasNext()){
                 System.out.println("Datos insertados: " + citado +" " + lugar + " " + asunto);

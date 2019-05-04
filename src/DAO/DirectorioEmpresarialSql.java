@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import DTO.ContactoDTO;
@@ -17,10 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author SerCo
- */
+
 public class DirectorioEmpresarialSql implements DirectorioDAO{
     private Connection userConn;
     private final String SQL_SELECT = "SELECT id_contacto,Usuario_id_trabajador,nombre_empresa,telefono,direccionPostal,email,giro,nombre_representante FROM  Contacto_empresarial WHERE Usuario_id_trabajador = ? ORDER BY nombre_empresa";
@@ -29,6 +22,7 @@ public class DirectorioEmpresarialSql implements DirectorioDAO{
     @Override
     public Directorio getDirectorio(TrabajadorDTO usuario) throws SQLException {
         /*Obtener un directorio que contenga todos los contactos relacionados con un trabajador en especifico*/
+
         
         Connection conn = null; 
         PreparedStatement stmt = null;

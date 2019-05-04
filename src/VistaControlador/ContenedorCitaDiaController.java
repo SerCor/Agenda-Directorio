@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agenda;
+
+package VistaControlador;
 
 import DTO.CitaDTO;
 import DTO.TrabajadorDTO;
@@ -77,8 +73,12 @@ public class ContenedorCitaDiaController implements Initializable {
     
     @FXML
     public void crearModificar(MouseEvent e){
+        /*Evento que se genera cuando se requiere modificar/crear una unica cita*/
+        
         try{
             System.out.println("Creando/Modificando una sola cita");
+            
+            //Prepara ventana que va recibir los datos de entrada.
             Stage ventana = new Stage();
             ventana.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
             ventana.setTitle("Detalles de cita.");
@@ -89,13 +89,16 @@ public class ContenedorCitaDiaController implements Initializable {
             controller.setTrabajadorDTO(usuario);
             controller.setControllerAgenda(controllerAgenda);
             List<CitaDTO> citas = new ArrayList<>();
-
+           
             citas.add(cita);
+            
+            //Determina si la cita es nueva o ya existe.
             if(cita.getId() == -1)
                 controller.setCitasNuevas(citas);
             else
                 controller.setCitasModificas(citas);
             
+            //Muestra la ventana relacionada con la cita requerida.
             ventana.setScene(new Scene(panel));
             ventana.initModality(Modality.WINDOW_MODAL);
             ventana.initOwner(((Node)e.getSource()).getScene().getWindow());

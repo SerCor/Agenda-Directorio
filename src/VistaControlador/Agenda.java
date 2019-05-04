@@ -1,5 +1,5 @@
 
-package Agenda;
+package VistaControlador;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +13,8 @@ public class Agenda extends Application {
          
     @Override    
     public void start(Stage stage) throws Exception {
+        /*Inicio del programa. Se incializa la ventana Inicio Login donde se ingresaran los datos de sesion o la creacion de una sesion*/
+        
         Parent root = FXMLLoader.load(getClass().getResource("InicioLogin.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());

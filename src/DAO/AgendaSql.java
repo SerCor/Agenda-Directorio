@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import DTO.AgendaDTO;
@@ -18,10 +14,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-/**
- *
- * @author SerCo
- */
 public class AgendaSql  implements AgendaDAO{
     private Connection userConn;
     
@@ -35,7 +27,8 @@ public class AgendaSql  implements AgendaDAO{
     @Override
     public AgendaDTO select(TrabajadorDTO trabajador,LocalDate fecha) throws SQLException{
         //private final String SQL_SELECT = "SELECT id_cita ,Usuario_id_trabajador,citado, fecha,hora_inicio,hora_final,lugar,asunto FROM Cita WHERE Usuario_id_trabajador = ? AND fecha = ?";
-
+        //Retorna agenda con las citas relacionadas a un trabajador en una fecha especifica
+        
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;

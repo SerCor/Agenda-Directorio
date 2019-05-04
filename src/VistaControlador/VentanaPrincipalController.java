@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agenda;
+
+package VistaControlador;
 
 import DAO.AgendaDAO;
 import DAO.AgendaSql;
@@ -96,12 +92,17 @@ public class VentanaPrincipalController  implements Initializable {
     }
     
     public void inicializarBarraInformacion(){
+        /*Inicializa la barra lateral con informacion sobre el trabajador*/
+        
         etiquetaNombre.setText(usuario.getNombre());
         etiquetaNoTrabajador.setText(usuario.getIdTrabajador());
         etiquetaPuesto.setText(usuario.getPuesto());
     }
     
     public void incializaEscenaDirectorio(){
+        
+        /*Carga el contenedor del directorio y lo inciializa con la informacion del usuario*/
+        
         try{         
             //Cargar Escena Directorio
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("ContenedorDirectorio.fxml"));
@@ -119,6 +120,7 @@ public class VentanaPrincipalController  implements Initializable {
             contenedorDirectorios.getItems().add(scene.getRoot());  
             contenedorDirectorios.setDividerPositions(.18);
             contenedorPrincipal.getSelectionModel().select(contenedorPrincipal.getTabs().get(1)); //Seleccionar el tab de Agenda
+
             
         }catch(Exception e){
             e.printStackTrace();
@@ -127,7 +129,7 @@ public class VentanaPrincipalController  implements Initializable {
     }
     
     public void inicializaEscenaAgenda(){
-         //Cargar Escena Agenda
+         //Carga contenedor de la agenda e inicializa con la informacion del usuario/
          try{
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("ContenedorAgenda.fxml"));
             agenda = (SplitPane)loader1.load();
@@ -140,8 +142,6 @@ public class VentanaPrincipalController  implements Initializable {
             controllerAgenda.setUsuario(usuario);
             controllerAgenda.actualizaTableroMes();
             controllerAgenda.actualizarTableroCitasDia();
-            
-            System.out.println(agenda);
             tabAgenda.setContent(agenda);
          }catch(Exception e){
              e.printStackTrace();
@@ -151,6 +151,8 @@ public class VentanaPrincipalController  implements Initializable {
     
     @FXML
     public void renovarAgenda(Event value){
+        //Actualiza contenido en la agenda en caso de que sea necesario.
+        
         if(controllerAgenda != null){
             controllerAgenda.actualizaTableroMes();
            controllerAgenda.actualizarTableroCitasDia();
@@ -160,6 +162,9 @@ public class VentanaPrincipalController  implements Initializable {
 
     
     public void mostrarVentanaError(String error){
+        
+        //Genera un ventana de error la cual puede contener un mensaje personalizado.
+        
          try{
             Stage stage = new Stage();
             stage.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));

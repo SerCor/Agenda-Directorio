@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agenda;
+
+package VistaControlador;
 
 import DAO.ContactoDAO;
 import DAO.ContactoEmpresarialSql;
 import DAO.ContactoPersonalSql;
-import DTO.ContactoEmpresarialDTO;
 import DTO.ContactoPersonalDTO;
+import DTO.DirectorioPersonalDTO;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -24,23 +20,20 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author SerCo
- */
-public class VentanaContactoEmpresarialController implements Initializable {
-    @FXML TextField campoEmpresa;
-    @FXML TextField campoTelefono;
-    @FXML TextField campoGiro;
+
+public class VentanaContactoPersonalController implements Initializable {
+    @FXML TextField campoNombre;
+    @FXML TextField campoTelefonoFijo;
+    @FXML TextField campoTelefonoCelular;
     @FXML TextArea campoDireccionPostal;
     @FXML TextField campoEmail;
-    @FXML TextField campoResponsable;
+    @FXML TextField campoParentesco;
     @FXML Button btnGuardar;
     @FXML Label etiquetaError;
-    private ContactoEmpresarialDTO contacto;
+    private ContactoPersonalDTO contacto;
     private VentanaPrincipalController controllerPrincipal;
     private ContenedorDirectorioController controllerDirectorio;
    
@@ -52,27 +45,32 @@ public class VentanaContactoEmpresarialController implements Initializable {
         controllerPrincipal = controller;
     }
     
-    public void seContacto(ContactoEmpresarialDTO contacto){
+    
+    public void seContacto(ContactoPersonalDTO contacto){
+        /*Rellena campos con informacion del contacto*/
         this.contacto = contacto;
-        campoEmpresa.setText(contacto.getNombre());
-        campoTelefono.setText(contacto.getTelefono());
+        campoNombre.setText(contacto.getNombre());
+        campoTelefonoFijo.setText(contacto.getTelefono());
+        campoTelefonoCelular.setText(contacto.getTelefonoCelular());
         campoDireccionPostal.setText(contacto.getDireccionPostal());
         campoEmail.setText(contacto.getEmail());
-        campoGiro.setText(contacto.getGiro());   
-        campoResponsable.setText(contacto.getRepresentante());
+        campoParentesco.setText(contacto.getParentesco());   
     }
     
     public Boolean validarIntegridadDatos(){
+        
+        /*Valida que los campos obligatorios tengan caracteres, el email sea valido y longitudes maximas de campos*/
+        
         Boolean banderaRetorno = false;
         try{
-            String nombre = campoEmpresa.getText();
-            String telefono = campoEmpresa.getText();
+            String nombre = campoNombre.getText();
+            String telefonoFijo = campoTelefonoFijo.getText();
+            String telefonoCelular = campoTelefonoCelular.getText();
             String direccionPostal = campoDireccionPostal.getText();
             String email = campoEmail.getText();
-            String giro = campoGiro.getText();
-            String nombreResponsable = campoResponsable.getText();
+            String parentesco = campoParentesco.getText();
             
-            if(nombre.equals("") || telefono.equals("")  || direccionPostal.equals("") || email.equals("") || giro.equals(""))
+            if(nombre.equals("") || telefonoFijo.equals("")  || direccionPostal.equals("") || email.equals("") || parentesco.equals(""))
                 throw new Exception("Error. No se puede dejar campos obligatorios vacíos.");
             
             //Validacion de correo
@@ -81,19 +79,19 @@ public class VentanaContactoEmpresarialController implements Initializable {
             Matcher matcher = pattern.matcher(email.toLowerCase());
             if (!matcher.matches()) 
               throw new Exception("Error. Formato de email invalido.");
-            
+
             if(nombre.length() >= 46)
-                campoEmpresa.setText(nombre.substring(0, 45));
-            if(telefono.length() >= 16)
-                campoTelefono.setText(telefono.substring(0,16));
-            if(direccionPostal.length() >= 16)
-                campoDireccionPostal.setText(direccionPostal.substring(0,15));
-            if(email.length() >= 101)
-                campoEmail.setText(email.substring(0,100));
-            if(giro.length() >= 26)
-                campoGiro.setText(giro.substring(0, 25));
-            if(nombreResponsable.length() >= 15)
-                campoResponsable.setText(nombreResponsable.substring(0,15));
+                campoNombre.setText(nombre.substring(0, 45));
+            if(telefonoFijo.length() >= 16)
+                campoTelefonoFijo.setText(telefonoFijo.substring(0,16));
+            if(telefonoCelular.length() >= 16)
+                campoTelefonoCelular.setText(telefonoCelular.substring(0,15));
+            if(direccionPostal.length() >= 101)
+                campoDireccionPostal.setText(direccionPostal.substring(0,100));
+            if(email.length() >= 26)
+                campoEmail.setText(email.substring(0, 25));
+            if(parentesco.length() >= 15)
+                campoParentesco.setText(parentesco.substring(0,15));
             
             banderaRetorno  = true;
         }catch(Exception e){
@@ -104,6 +102,7 @@ public class VentanaContactoEmpresarialController implements Initializable {
     }
     
     @FXML public void guardarContactoBoton(ActionEvent e){
+        /* Crea el nuevo contacto*/
         if(validarIntegridadDatos())
             guardarContacto();
     }
@@ -116,15 +115,15 @@ public class VentanaContactoEmpresarialController implements Initializable {
     
     public void guardarContacto(){
         //Consulta para crear Contacto;
-        //Recoleccion de informacion de los campos
-            String nombre = campoEmpresa.getText();
-            String telefono = campoEmpresa.getText();
+        try{
+            
+            //Recoleccion de informacion de los campos
+            String nombre = campoNombre.getText();
+            String telefonoFijo = campoTelefonoFijo.getText();
+            String telefonoCelular = campoTelefonoCelular.getText();
             String direccionPostal = campoDireccionPostal.getText();
             String email = campoEmail.getText();
-            String giro = campoGiro.getText();
-            String nombreResponsable = campoResponsable.getText();
- 
-        try{
+            String parentesco = campoParentesco.getText();
             
             //Verificacion de si existe un contacto con este nombre
             ContactoDAO baseD = new ContactoPersonalSql();
@@ -133,29 +132,33 @@ public class VentanaContactoEmpresarialController implements Initializable {
                 //Se encontro contacto con el mismo nombre
                 throw new Exception("Error. Nombre de contacto ya existente.");
             }
+                
             
-            ContactoEmpresarialSql dirB = new ContactoEmpresarialSql();
-//public ContactoEmpresarialDTO(String id_trabajador,String nombre,String telefono,String direccionPostal,String email,String giro,String representante){
-            ContactoEmpresarialDTO contacto = new ContactoEmpresarialDTO(controllerPrincipal.getUsuario().getIdTrabajador(),nombre.toUpperCase(),telefono,direccionPostal.toUpperCase(),email.toUpperCase(),giro.toUpperCase(),nombreResponsable.toUpperCase());
-            if(dirB.insert(contacto) == 0)
+            //Creacion e almacenamiento de nuevo objeto
+            ContactoPersonalSql dirB = new ContactoPersonalSql();
+//    public ContactoPersonalDTO(String id_trabajador,String nombre,String telefonoFijo,String telefonoCelular,String direccionPostal,String email,String parentesco){W
+            ContactoPersonalDTO contacto =  new ContactoPersonalDTO(controllerPrincipal.getUsuario().getIdTrabajador(),nombre.toUpperCase(),telefonoFijo,telefonoCelular,direccionPostal.toUpperCase(),email.toUpperCase(),parentesco.toUpperCase());
+            if(dirB.insert(contacto) != 1)
                 throw new Exception("Error. No fue posible guardar el nuevo contacto.");
             
-            controllerDirectorio.actualizarDirectorioEmpresarial();
-            Stage ventana =(Stage) campoEmpresa.getScene().getWindow();
+            controllerDirectorio.actualizarDirectorioPersonal();
+            Stage ventana =(Stage) campoNombre.getScene().getWindow();
             ventana.close();
+            
         }catch(SQLException e){
             e.printStackTrace();
             etiquetaError.setText("Error. No fue posible la conexión con la base de datos.");
-        }catch(Exception ex){
-           etiquetaError.setText(ex.getMessage());
+        }catch(Exception er){
+            etiquetaError.setText(er.getMessage());
         }
+        
+        
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }    
     
-    
-   
     
 }

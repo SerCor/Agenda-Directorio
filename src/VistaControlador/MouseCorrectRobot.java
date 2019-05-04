@@ -1,5 +1,5 @@
 
-package Agenda;
+package VistaControlador;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
@@ -8,10 +8,8 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Toolkit;
 
-/**
- *
- * @author SerCo
- */
+/*CLASE AUXILAR PARA REPARAR BUG EN MOVIMIENTO DE MOUSE EN WINDOWS*/
+
 public class MouseCorrectRobot extends Robot {
     final Dimension ScreenSize;// Primary Screen Size
 

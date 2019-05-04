@@ -1,4 +1,4 @@
-package Agenda;
+package VistaControlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;

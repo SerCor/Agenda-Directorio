@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agenda;
+
+package VistaControlador;
 
 import DAO.AgendaDAO;
 import DAO.AgendaSql;
@@ -44,11 +40,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author SerCo
- */
+
 public class ContenedorAgendaController implements Initializable {
     @FXML VBox contenedorCitasDia;
     @FXML VBox contenedorCalendario;
@@ -164,6 +156,8 @@ public class ContenedorAgendaController implements Initializable {
         /*Limpiar interfaz de citas por dia*/
         limpiarTableroCitasDia();
         
+        
+        //Modifica letrero de dias a mostrar
         Button boton  = (Button) event.getSource();
         String id = boton.getId();
         int day = 0;
@@ -173,6 +167,7 @@ public class ContenedorAgendaController implements Initializable {
         else
             day = Integer.parseInt(number.substring(number.length()-2));
         
+        //Actualiza el tablero con la fecha actual
         fechaMostrada = fechaMostrada.withDayOfMonth(day);
         actualizarTableroCitasDia();
         
@@ -181,7 +176,7 @@ public class ContenedorAgendaController implements Initializable {
     
      public void actualizaTableroMes(){
      
-        /* Obtiene el anio y mes de la fecha*/
+        /* Obtiene el anio y mes de la fecha. Carga en pantalla los dias que son del mes requerido y deshabilita los dias que ya han pasado en caso de ser el mes actual*/
         LocalDate fecha = fechaMostrada;
         Label mes =(Label) contenedorCalendario.lookup("#etiquetaMes");
         int Fmes = fecha.getMonth().getValue();
@@ -293,7 +288,6 @@ public class ContenedorAgendaController implements Initializable {
         }
         
         //Limpia los dias finales que no son del mes
-        
         for(int i = contador; i < 36 && itrBoton.hasNext() && itrEtiqueta.hasNext();i++){
                 boton = (Button) itrBoton.next();
                 boton.setDisable(true);
@@ -481,6 +475,8 @@ public class ContenedorAgendaController implements Initializable {
     
     @FXML
     public void limpiarCita(ActionEvent e){
+        /*Evento que se genera cuando se requiere limpiar citas. Contempla el caso en el que algunas citas pueden ser nuevas y en el cual puede haber tambien citas existentes*/
+        
         List<CitaDTO> citasModificadas = new ArrayList<>();
             List<CitaDTO> citasNuevas = new ArrayList<>();
             Iterator itr = contenedorCitasDia.getChildren().iterator();
@@ -507,7 +503,8 @@ public class ContenedorAgendaController implements Initializable {
                     //No se selecciono ningun check
                     if( citasModificadas.isEmpty())
                         throw new Exception();
-
+                    
+                    //Solo hace falta eliminar las citas existentes.
                      Iterator itrCitas = citasModificadas.iterator();
                      CitaDAO baseD = new CitaSql();
 

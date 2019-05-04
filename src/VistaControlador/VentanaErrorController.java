@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agenda;
+
+package VistaControlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,11 +13,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author SerCo
- */
 public class VentanaErrorController implements Initializable {
     private  String msgError = "";
     @FXML Button btnSalir;

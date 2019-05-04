@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import DTO.CitaDTO;
@@ -14,10 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-/**
- *
- * @author SerCo
- */
+
 public class CitaSql implements CitaDAO {
     private Connection userConn;
 
@@ -39,6 +32,7 @@ public class CitaSql implements CitaDAO {
     @Override
     public int insert(CitaDTO cita) throws SQLException{
    //     private final String SQL_INSERT = "INSERT INTO cita(Usuario_id_trabajador,citado, fecha,hora_inicio,hora_final,lugar,asunto) VALUES(?,?,?,?,?,?,?)";
+        //Inserta una cita nueva en la base de datos
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -68,6 +62,7 @@ public class CitaSql implements CitaDAO {
     
     public int update(CitaDTO cita)
             throws SQLException {
+        //Actualiza la cita con el id.
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -97,6 +92,7 @@ public class CitaSql implements CitaDAO {
     //    private final String SQL_UPDATE = "UPDATE Cita SET citado=? WHERE Usuario_id_trabajador=? AND citado=?";
     public int update(String NuevoCitado,String id_trabajador,String citado)
             throws SQLException {
+        //Actualiza el nombre de la cita que corresponde al id_Trabajador y al nombre del citado.
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -117,12 +113,11 @@ public class CitaSql implements CitaDAO {
         return rows;
     }
 
-    /**
-     * Recibimos un objeto PersonaDTO no necesariamente debe venir lleno, sino
-     * solo nos importa el atributo id_persona
-     */
+
     @Override
     public int delete(CitaDTO cita) throws SQLException {
+        /*Elimina cita con el id_cita*/
+        
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -142,6 +137,8 @@ public class CitaSql implements CitaDAO {
     
     @Override
         public int delete(String id,String id_trabajador)throws SQLException{
+            /*Elimina todas las citas relacionadas con el trabajador,
+            */
             Connection conn = null;
             PreparedStatement stmt = null;
             int rows = 0;
@@ -163,6 +160,8 @@ public class CitaSql implements CitaDAO {
     
     @Override
     public CitaDTO select(CitaDTO cita) throws SQLException {
+        /*Seelecciona la cita con el id*/
+        
         // private final String SQL_SELECT = "select Usuario_id_trabajador,citado, fecha,hora_inicio,hora_final,lugar,asunto FROM cita WHERE id_cita=?";
         Connection conn = null;
         PreparedStatement stmt = null;
