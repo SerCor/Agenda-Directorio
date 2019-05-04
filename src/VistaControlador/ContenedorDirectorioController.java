@@ -90,7 +90,7 @@ public class ContenedorDirectorioController implements Initializable {
                     
                     if(controller.campoEmpresa.getText().equals(campoBusquedaEmpresa.getText().toUpperCase())){
                         //En caso de que lo encuentre hace el llamado a la funcion que hace el scroll y pone el puntero sobre el
-                        ensureVisible(scrollDirectorioEmpresarial,contenedorContacto,posicion);
+                        ensureVisible(scrollDirectorioEmpresarial,contenedorContacto,posicion,0);
                         System.out.println("Encontrado");
                         flagEncontrado = true;
                     }
@@ -135,7 +135,7 @@ public class ContenedorDirectorioController implements Initializable {
                     if(controller.campoNombre.getText().equals(campoBusquedaPersona.getText().toUpperCase())){  
                         //En caso de ser encontrado llama a la funcion encarga de hacer scroll hacia el y poner el puntero del mouse sobre dicho contenedor.
                         System.out.println("Encontrado");
-                        ensureVisible(scrollDirectorioPersonal,contenedorContacto,posicion);
+                        ensureVisible(scrollDirectorioPersonal,contenedorContacto,posicion,1);
                         flagEncontrado = true;
                     }
                 }
@@ -148,14 +148,17 @@ public class ContenedorDirectorioController implements Initializable {
         
     }
     
-     private  void ensureVisible(ScrollPane pane, Node node,int posicionContenedor)  {
+     private  void ensureVisible(ScrollPane pane, Node node,int posicionContenedor,int tipoDirectorio)  {
          
          /*Funcion auxiliar que se encarga de hacer scroll hacia un nodo en especifico y posterior a eso poner el puntero del mouse sobre dicho contenedor*/
          
          //Determina posicion de scroll
         double height = pane.getContent().getBoundsInLocal().getHeight();
         Bounds bounds = pane.getViewportBounds();
-        pane.setVvalue(contenedorDirectorioEmpresarial.getChildren().get((int)posicionContenedor-1).getLayoutY() * (1/(contenedorDirectorioEmpresarial.getHeight()-bounds.getHeight())));
+        if(tipoDirectorio == 0)
+            pane.setVvalue(contenedorDirectorioEmpresarial.getChildren().get((int)posicionContenedor-1).getLayoutY() * (1/(contenedorDirectorioEmpresarial.getHeight()-bounds.getHeight())));
+        else
+            pane.setVvalue(contenedorDirectorioPersonal.getChildren().get((int)posicionContenedor-1).getLayoutY() * (1/(contenedorDirectorioPersonal.getHeight()-bounds.getHeight())));
 
         
         
