@@ -17,13 +17,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="530.0" prefWidth="865.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.ContenedorDirectorioController">
+
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.ContenedorDirectorioController">
    <tabs>
       <Tab id="tabDirectorioPersonal" style="-fx-background-color: #00D1A6;" styleClass="pestaña" text="Personal">
          <content>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="470.0" prefWidth="500.0">
                <children>
-                  <GridPane id="encabezado" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="1859.0" style="-fx-background-color: #05506B;">
+                  <GridPane id="encabezado" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="601.0" style="-fx-background-color: #05506B;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1335.2" minWidth="10.0" prefWidth="491.999951171875" />
                         <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="307.7999511718751" minWidth="10.0" prefWidth="288.80004882812494" />
@@ -88,9 +89,9 @@
                         </HBox>
                      </children>
                   </GridPane>
-                  <ScrollPane fx:id="scrollDirectorioPersonal" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" VBox.vgrow="ALWAYS">
+                  <ScrollPane fx:id="scrollDirectorioPersonal" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox id="contenedorDirectorioPersonal" fx:id="contenedorDirectorioPersonal" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="15.0" style="-fx-background-color: #005555;">
+                        <VBox id="contenedorDirectorioPersonal" fx:id="contenedorDirectorioPersonal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="678.0" spacing="15.0" style="-fx-background-color: #005555;">
                            <padding>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </padding>
@@ -103,9 +104,9 @@
       </Tab>
       <Tab id="tabDirectorioEmpresarial" style="-fx-background-color: #00D1A6;" styleClass="pestaña" text="Empresarial">
          <content>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="800.0">
                <children>
-                  <GridPane id="encabezado" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="1859.0" style="-fx-background-color: #05506B;">
+                  <GridPane id="encabezado" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" style="-fx-background-color: #05506B;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1335.2" minWidth="10.0" prefWidth="491.999951171875" />
                         <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="307.7999511718751" minWidth="10.0" prefWidth="288.80004882812494" />
@@ -170,9 +171,9 @@
                         </HBox>
                      </children>
                   </GridPane>
-                  <ScrollPane fx:id="scrollDirectorioEmpresarial" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#bloquearEnter" VBox.vgrow="ALWAYS">
+                  <ScrollPane fx:id="scrollDirectorioEmpresarial" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#bloquearEnter" prefHeight="600.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox id="contenedorDirectorioEmpresarial" fx:id="contenedorDirectorioEmpresarial" maxWidth="1.7976931348623157E308" prefHeight="356.0" prefWidth="600.0" spacing="15.0" style="-fx-background-color: #005555;">
+                        <VBox id="contenedorDirectorioEmpresarial" fx:id="contenedorDirectorioEmpresarial" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" spacing="15.0" style="-fx-background-color: #005555;">
                            <padding>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </padding>

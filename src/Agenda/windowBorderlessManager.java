@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -93,6 +95,8 @@ public class windowBorderlessManager{
             VentanaPrincipalController controller =loader.getController();
             controller.setTrabajadorDTO(user);
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            //stage.initStyle(StageStyle.TRANSPARENT);
             scene.setUserData(loader);
             stage.setScene(scene);
             Toolkit t = Toolkit.getDefaultToolkit();
@@ -101,6 +105,7 @@ public class windowBorderlessManager{
             stage.setWidth(d.width);
             stage.setHeight(d.height-40);
             stage.setTitle("Agenda Personal");
+            stage.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
             stage.show();
             controller.inicializaEscenaAgenda();
             controller.incializaEscenaDirectorio();

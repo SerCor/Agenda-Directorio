@@ -17,6 +17,8 @@ import DTO.ContactoPersonalDTO;
 import DTO.Directorio;
 import DTO.DirectorioPersonalDTO;
 import DTO.TrabajadorDTO;
+import java.awt.AWTException;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,6 +31,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -40,7 +43,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 /**
  * FXML Controller class
  *
@@ -72,13 +80,17 @@ public class ContenedorDirectorioController implements Initializable {
                 boolean flagEncontrado = false;
                 GridPane contenedorContacto = null;
                 FXMLLoader loader = null;
+                int posicion = 0;
                 Iterator itr = contenedores.iterator();
+                
+                
                 while(itr.hasNext() && !flagEncontrado){
+                    posicion++;
                     contenedorContacto =  (GridPane) itr.next();
                     loader =(FXMLLoader) contenedorContacto.getUserData();
                     ContenedorContactoController controller =(ContenedorContactoController) loader.getController();
                     if(controller.campoEmpresa.getText().equals(campoBusquedaEmpresa.getText().toUpperCase())){
-                        ensureVisible(scrollDirectorioEmpresarial,contenedorContacto);
+                        ensureVisible(scrollDirectorioEmpresarial,contenedorContacto,posicion);
                         System.out.println("Encontrado");
                         flagEncontrado = true;
                     }
@@ -104,13 +116,16 @@ public class ContenedorDirectorioController implements Initializable {
                 FXMLLoader loader = null;
                 Iterator itr = contenedores.iterator();
                 boolean flagEncontrado =false;
+                int posicion  = 0;
+                
                 while(itr.hasNext() && !flagEncontrado){
+                    posicion++;
                     contenedorContacto =  (GridPane) itr.next();
                     loader =(FXMLLoader) contenedorContacto.getUserData();
                     ContenedorContactoPersonalController controller =(ContenedorContactoPersonalController) loader.getController();
                     if(controller.campoNombre.getText().equals(campoBusquedaPersona.getText().toUpperCase())){                       
                         System.out.println("Encontrado");
-                        ensureVisible(scrollDirectorioPersonal,contenedorContacto);
+                        ensureVisible(scrollDirectorioPersonal,contenedorContacto,posicion);
                         flagEncontrado = true;
                     }
                 }
@@ -123,20 +138,34 @@ public class ContenedorDirectorioController implements Initializable {
         
     }
     
-     private static void ensureVisible(ScrollPane pane, Node node) {
-        double width = pane.getContent().getBoundsInLocal().getWidth();
+     private  void ensureVisible(ScrollPane pane, Node node,int posicionContenedor)  {
         double height = pane.getContent().getBoundsInLocal().getHeight();
         
-        //TODO: Falta determinar cual es la coordenada del contenedor
-        double x = node.getParent().getBoundsInParent().getMinX();
-        double y = node.getParent().getBoundsInParent().getMinY();
-
-        // scrolling values range from 0 to 1
-        pane.setVvalue(y/height);
-        pane.setHvalue(x/width);
-
-        // just for usability
+        node.getBoundsInParent().getMinX();
+        double altoContenedor = node.getBoundsInParent().getHeight();
+        double posFinal = altoContenedor * (posicionContenedor+1); // Posicion Inicial del contenedor del contacto que se busca.
+        
+        Bounds bounds = pane.getViewportBounds();
         node.requestFocus();
+
+        int desviacion = 0;
+        pane.setVvalue(contenedorDirectorioEmpresarial.getChildren().get((int)posicionContenedor-1).getLayoutY() * (1/(contenedorDirectorioEmpresarial.getHeight()-bounds.getHeight())));
+
+
+        Bounds bound = node.localToScreen(node.getBoundsInLocal());
+        Toolkit tool = Toolkit.getDefaultToolkit();
+        Dimension dim = tool.getScreenSize();
+        
+        try{
+            
+            MouseCorrectRobot robot = new MouseCorrectRobot();
+            int x = 200;
+            robot.MoveMouseControlled(((bound.getMinX()+ bound.getMaxX())/2)/dim.getWidth(),((bound.getMinY()+ bound.getMaxY())/2)/dim.getHeight());
+        }catch(AWTException e){
+            e.printStackTrace();
+        }
+        
+
     }
     
     @FXML 
@@ -254,6 +283,7 @@ public class ContenedorDirectorioController implements Initializable {
         // Mostrar una ventana para crear un contacto empresarial
         try{
             Stage ventana = new Stage();
+            ventana.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaContactoEmpresarial.fxml"));
             GridPane root = (GridPane) loader.load();
             VentanaContactoEmpresarialController controller = loader.getController();
@@ -279,6 +309,7 @@ public class ContenedorDirectorioController implements Initializable {
         // Mostrar una ventana para crear un contacto personal
         try{
             Stage ventana = new Stage();
+            ventana.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaContactoPersonal.fxml"));
             GridPane root = (GridPane) loader.load();
             VentanaContactoPersonalController controller = loader.getController();

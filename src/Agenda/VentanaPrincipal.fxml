@@ -1,11 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<TabPane fx:id="contenedorPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="2000.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.VentanaPrincipalController">
+<TabPane fx:id="contenedorPrincipal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.VentanaPrincipalController">
   <tabs>
     <Tab id="tabAgenda" fx:id="tabAgenda" onSelectionChanged="#renovarAgenda" style="-fx-background-color: #0A87C4;" styleClass="pestaña" text="Agenda" />
-    <Tab id="tabDirectorio" fx:id="tabDirectorio" style="-fx-background-color: #0A87C4;" styleClass="pestaña" text="Directorio" />
+    <Tab id="tabDirectorio" fx:id="tabDirectorio" style="-fx-background-color: #0A87C4;" styleClass="pestaña" text="Directorio">
+         <content>
+            <SplitPane fx:id="contenedorDirectorios" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <items>
+                  <BorderPane style="-fx-background-color: #FFFFFF;" SplitPane.resizableWithParent="false">
+                     <center>
+                        <VBox maxWidth="1.7976931348623157E308" prefHeight="122.0" prefWidth="150.0" BorderPane.alignment="TOP_LEFT">
+                           <children>
+                              <HBox alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="55.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icono_nombre.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="25.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="etiquetaNombre" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="382.0" style="-fx-text-fill: #005555;" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <GridPane maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="485.5999816894531" minWidth="10.0" prefWidth="450.4000305175781" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="752.8000244140626" minWidth="10.0" prefWidth="449.5999694824219" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #000000;" text="No. trabajador" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="302.0" style="-fx-text-fill: #000000;" text="Puesto" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="etiquetaPuesto" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #a79e9e;" text="Label" textFill="#a79e9e" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                       <GridPane.margin>
+                                          <Insets left="15.0" />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="etiquetaNoTrabajador" maxWidth="1.7976931348623157E308" prefWidth="47.0" style="-fx-text-fill: #a79e9e;" text="Label" textFill="#a79e9e" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                       <GridPane.margin>
+                                          <Insets left="15.0" />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets top="75.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </center>
+                     <bottom>
+                        <Label fx:id="etiquetaCerrarSesion" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" onMousePressed="#cerrarSesion" style="-fx-text-fill: #a79e9e;" text="Cerrar sesion" textAlignment="CENTER" textFill="#a79e9e" BorderPane.alignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <BorderPane.margin>
+                              <Insets bottom="15.0" />
+                           </BorderPane.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </bottom>
+                  </BorderPane>
+               </items>
+            </SplitPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>

@@ -16,8 +16,9 @@ public class Agenda extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("InicioLogin.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        
         stage.show();
     }
 

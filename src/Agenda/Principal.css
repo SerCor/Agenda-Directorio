@@ -8,6 +8,11 @@
     -fx-border-radius: 20;
 }
 
+
+.contenedorContactoEmpresarial, .contenedorContactoPersonal{
+    -fx-background-color: #53706F;
+}
+
 .contenedorCita:hover , .contenedorContactoEmpresarial:hover , .contenedorContactoPersonal:hover{
     -fx-background-color: #5D877A;
 }
@@ -32,6 +37,7 @@
 
 .etiquetaDia{
     -fx-font: bold normal 10pt "Arial";
+    -fx-text-fill: #000000;
 }
 
 

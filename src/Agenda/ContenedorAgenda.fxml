@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="contenedorAgenda" dividerPositions="0.2494" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="565.0" prefWidth="1921.0" stylesheets="@Principal.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.ContenedorAgendaController">
+<SplitPane fx:id="contenedorAgenda" dividerPositions="0.4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="565.0" prefWidth="1921.0" stylesheets="@Principal.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.ContenedorAgendaController">
    <items>
       <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="371.0" prefWidth="490.0">
          <content>
@@ -43,7 +43,7 @@
             </VBox>
          </content>
       </ScrollPane>
-      <VBox id="contenedorAgenda" fx:id="contenedorCalendario" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="1427.0">
+      <VBox id="contenedorAgenda" fx:id="contenedorCalendario" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="900.0">
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                <children>
@@ -51,22 +51,28 @@
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button id="btnSiguiente" fx:id="btnSiguiente" contentDisplay="CENTER" layoutX="509.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarMesPosterior" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #6FD2E8;" styleClass="BtnMovimiento" stylesheets="@Principal.css" text="Siguiente" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Label id="etiquetaMes" alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="8.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="798.0" text="Mes" textAlignment="CENTER" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="101.0">
+                  <Label id="etiquetaMes" alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="8.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="798.0" style="-fx-text-fill: #000000;" text="Mes" textAlignment="CENTER" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="101.0">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <GridPane hgap="1.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="35.0" style="-fx-background-color: #005555;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                  <GridPane hgap="1.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="35.0" prefWidth="500.0" style="-fx-background-color: #005555;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
                      <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -121,7 +127,7 @@
             </AnchorPane>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <GridPane id="tablaDias" fx:id="tablaDias" alignment="TOP_CENTER" hgap="2.0" layoutX="2.0" layoutY="39.999996185302734" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#verDia" prefHeight="573.6" prefWidth="1508.0" vgap="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane id="tablaDias" fx:id="tablaDias" alignment="TOP_CENTER" hgap="2.0" layoutX="2.0" layoutY="39.999996185302734" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#verDia" prefHeight="573.6" prefWidth="900.0" vgap="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />

@@ -36,6 +36,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -450,6 +451,7 @@ public class ContenedorAgendaController implements Initializable {
                    throw new Exception();
                
                 Stage ventana = new Stage();
+                ventana.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
                 VBox root;  
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaCita.fxml"));
                 root = loader.load();

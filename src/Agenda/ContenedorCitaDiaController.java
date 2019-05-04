@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -79,6 +80,7 @@ public class ContenedorCitaDiaController implements Initializable {
         try{
             System.out.println("Creando/Modificando una sola cita");
             Stage ventana = new Stage();
+            ventana.getIcons().add(new Image(getClass().getResource("agenda.png").toString()));
             ventana.setTitle("Detalles de cita.");
             ventana.setResizable(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaCita.fxml"));
