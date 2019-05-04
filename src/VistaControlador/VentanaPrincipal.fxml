@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane fx:id="contenedorPrincipal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Agenda.VentanaPrincipalController">
+<TabPane fx:id="contenedorPrincipal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistaControlador.VentanaPrincipalController">
   <tabs>
     <Tab id="tabAgenda" fx:id="tabAgenda" onSelectionChanged="#renovarAgenda" style="-fx-background-color: #0A87C4;" styleClass="pestaña" text="Agenda" />
     <Tab id="tabDirectorio" fx:id="tabDirectorio" style="-fx-background-color: #0A87C4;" styleClass="pestaña" text="Directorio">
