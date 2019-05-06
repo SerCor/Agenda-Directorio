@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox onKeyPressed="#guardarEnter" style="-fx-background-color: #5D877A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistaControlador.VentanaCitaController">
+<VBox onKeyPressed="#guardarEnter" style="-fx-background-color: #5D877A;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistaControlador.VentanaCitaController">
    <children>
       <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="70.0" text="Información sobre cita" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -35,22 +35,22 @@
             <RowConstraints maxHeight="219.9999938964844" minHeight="10.0" prefHeight="39.79999389648438" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Contacto" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Label text="Contacto" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Lugar" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label text="Lugar" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="Asunto" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label text="Asunto" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <Label GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />

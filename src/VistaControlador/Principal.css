@@ -14,7 +14,7 @@
 }
 
 .contenedorCita:hover , .contenedorContactoEmpresarial:hover , .contenedorContactoPersonal:hover{
-    -fx-background-color: #5D877A;
+    -fx-background-color: #156e6e;
 }
 
 .etiquetaAsunto ,  .etiquetaNombre{

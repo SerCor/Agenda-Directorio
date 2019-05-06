@@ -5,7 +5,6 @@ import DAO.ContactoDAO;
 import DAO.ContactoEmpresarialSql;
 import DAO.ContactoPersonalSql;
 import DTO.ContactoPersonalDTO;
-import DTO.DirectorioPersonalDTO;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 

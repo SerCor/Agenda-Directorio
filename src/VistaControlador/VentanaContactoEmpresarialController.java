@@ -5,7 +5,6 @@ import DAO.ContactoDAO;
 import DAO.ContactoEmpresarialSql;
 import DAO.ContactoPersonalSql;
 import DTO.ContactoEmpresarialDTO;
-import DTO.ContactoPersonalDTO;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;

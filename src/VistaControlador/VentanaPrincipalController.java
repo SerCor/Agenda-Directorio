@@ -1,62 +1,25 @@
 
 package VistaControlador;
 
-import DAO.AgendaDAO;
-import DAO.AgendaSql;
-import DAO.CitaDAO;
-import DAO.CitaSql;
-import DAO.ContactoDAO;
-import DAO.ContactoEmpresarialSql;
-import DAO.ContactoPersonalSql;
-import DAO.DirectorioDAO;
-import DAO.DirectorioEmpresarialSql;
-import DAO.DirectorioPersonalSql;
 import DTO.*;
- import javafx.scene.image.Image;
-import java.io.IOException;
+import javafx.scene.image.Image;
 import java.net.URL;
-import java.sql.SQLException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class VentanaPrincipalController  implements Initializable {
+public class VentanaPrincipalController extends windowBorderlessManager  implements Initializable {
     @FXML TabPane contenedorPrincipal;
     @FXML Tab tabAgenda;
     @FXML Tab tabDirectorio;
@@ -81,8 +44,8 @@ public class VentanaPrincipalController  implements Initializable {
     }
     
   @FXML
-  public void cerrarSesion(MouseEvent e){
-      System.exit(0);
+  public void cerrarSesion(Event e){
+      createLogin(e);
   }
 
     @Override
@@ -92,8 +55,6 @@ public class VentanaPrincipalController  implements Initializable {
     }
     
     public void inicializarBarraInformacion(){
-        /*Inicializa la barra lateral con informacion sobre el trabajador*/
-        
         etiquetaNombre.setText(usuario.getNombre());
         etiquetaNoTrabajador.setText(usuario.getIdTrabajador());
         etiquetaPuesto.setText(usuario.getPuesto());
@@ -101,8 +62,7 @@ public class VentanaPrincipalController  implements Initializable {
     
     public void incializaEscenaDirectorio(){
         
-        /*Carga el contenedor del directorio y lo inciializa con la informacion del usuario*/
-        
+        /*Carga el contenedor del directorio y lo inicializa con la informacion del usuario*/
         try{         
             //Cargar Escena Directorio
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("ContenedorDirectorio.fxml"));
@@ -118,7 +78,7 @@ public class VentanaPrincipalController  implements Initializable {
             Scene scene =  new Scene(directorio);
             scene.setUserData(loader1);
             contenedorDirectorios.getItems().add(scene.getRoot());  
-            contenedorDirectorios.setDividerPositions(.18);
+            contenedorDirectorios.setDividerPositions(.198);
             contenedorPrincipal.getSelectionModel().select(contenedorPrincipal.getTabs().get(1)); //Seleccionar el tab de Agenda
 
             

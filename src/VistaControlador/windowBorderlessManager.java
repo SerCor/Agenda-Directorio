@@ -96,7 +96,6 @@ public class windowBorderlessManager{
             controller.setTrabajadorDTO(user);
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            //stage.initStyle(StageStyle.TRANSPARENT);
             scene.setUserData(loader);
             stage.setScene(scene);
             Toolkit t = Toolkit.getDefaultToolkit();

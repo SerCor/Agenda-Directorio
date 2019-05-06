@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistaControlador.ContenedorDirectorioController">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@Principal.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistaControlador.ContenedorDirectorioController">
    <tabs>
       <Tab id="tabDirectorioPersonal" style="-fx-background-color: #00D1A6;" styleClass="pestaña" text="Personal">
          <content>
@@ -34,9 +34,9 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="70.0" text="Directorio Personal" textFill="WHITE" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS">
+                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="70.0" text="Directorio Personal" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
                            <padding>
                               <Insets left="30.0" top="10.0" />
@@ -118,7 +118,7 @@
                      <children>
                         <Label alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="70.0" text="Directorio Empresarial" textFill="WHITE" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
                            <padding>
                               <Insets left="30.0" top="10.0" />
