@@ -15,13 +15,14 @@ public class Agenda extends Application {
     public void start(Stage stage) throws Exception {
         /*Inicio del programa. Se incializa la ventana Inicio Login donde se ingresaran los datos de sesion o la creacion de una sesion*/
         
-        Parent root = FXMLLoader.load(getClass().getResource("InicioLogin.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("InicioLogin.fxml"));
+        Parent root = (Parent)loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
-        
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
+  
     }
 
     public static void main(String[] args) {
