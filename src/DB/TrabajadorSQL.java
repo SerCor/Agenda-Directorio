@@ -1,5 +1,6 @@
 package DB;
 
+import DAO.TrabajadorDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,6 +63,52 @@ public class TrabajadorSQL implements TrabajadorDAO{
             Conection.close(con);
         }   
         return trabajador;
+    }
+    @Override
+    public boolean availableId(String id)throws SQLException{
+        Connection con= null;
+        PreparedStatement peticion=null;
+        ResultSet rs=null;
+        String query= "SELECT id_trabajador FROM Usuario WHERE id_trabajador = ?";
+        try{
+            con=Conection.getConnection();
+            peticion=con.prepareStatement(query);
+            peticion.setString(1, id);
+            rs = peticion.executeQuery();
+            if(rs.next()){
+                return false;
+            }
+       }catch(SQLException e){
+           return false;
+       }finally{
+            Conection.close(rs);
+            Conection.close(peticion);
+            Conection.close(con);
+        }   
+        return true;
+    }
+    @Override
+    public boolean availableUsuario(String user)throws SQLException{
+        Connection con= null;
+        PreparedStatement peticion=null;
+        ResultSet rs=null;
+        String query= "SELECT usuario FROM Usuario WHERE usuario = ?";
+        try{
+            con=Conection.getConnection();
+            peticion=con.prepareStatement(query);
+            peticion.setString(1, user);
+            rs = peticion.executeQuery();
+            if(rs.next()){
+                return false;
+            }
+       }catch(SQLException e){
+           return false;
+       }finally{
+            Conection.close(rs);
+            Conection.close(peticion);
+            Conection.close(con);
+        }   
+        return true;
     }
     
 }

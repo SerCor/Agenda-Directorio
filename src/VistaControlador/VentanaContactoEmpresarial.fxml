@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="contactoEmpresarial" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#guardarContactoEnter" prefHeight="210.0" prefWidth="1045.0" style="-fx-background-color: #53706F;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistaControlador.VentanaContactoEmpresarialController">
+<GridPane id="contactoEmpresarial" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#guardarContactoEnter" prefHeight="210.0" prefWidth="1045.0" style="-fx-background-color: #53706F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistaControlador.VentanaContactoEmpresarialController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="113.13334274291992" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.39996337890625" minWidth="10.0" prefWidth="298.00001220703126" />
@@ -29,7 +29,7 @@
    <children>
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Empresa*" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.halignment="LEFT">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="17.0" />
          </font>
          <GridPane.margin>
             <Insets right="10.0" />
@@ -37,7 +37,7 @@
       </Label>
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="102.0" text="Telefono*" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
          <GridPane.margin>
             <Insets right="10.0" />
@@ -45,7 +45,7 @@
       </Label>
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Email*" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
          <GridPane.margin>
             <Insets right="10.0" />
@@ -53,7 +53,7 @@
       </Label>
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Giro*" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.rowIndex="2">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
          <GridPane.margin>
             <Insets right="10.0" />
@@ -81,15 +81,15 @@
          </cursor></TextField>
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Dirección postal*" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.columnIndex="2">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Nombre responsable*" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="101.0" text="Nombre responsable*" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <GridPane.margin>
             <Insets right="10.0" />
