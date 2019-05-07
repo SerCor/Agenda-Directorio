@@ -1,25 +1,22 @@
 
 package VistaControlador;
 
-import DB.TrabajadorDAO;
+import DAO.TrabajadorDAO;
 import DB.TrabajadorSQL;
 import DTO.TrabajadorDTO;
 import com.jfoenix.controls.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 
 public class SignUpController extends windowBorderlessManager implements Initializable {
-    @FXML Label warning;
+    @FXML Label warning,warningId,warningUser;
     @FXML JFXButton crearSesion;
     @FXML JFXTextField nombre,apellidos,idTrabajador,usuario;
     @FXML JFXComboBox puesto;
@@ -41,7 +38,6 @@ public class SignUpController extends windowBorderlessManager implements Initial
     @FXML private void validateForm(ActionEvent e){
         /***Aqui se hace la consulta a la base de datos y se verifica que el codigo del trabajdor
          y el nombre de usuario no esten repetidos en la base de datos***/
-        System.out.print("akiiii");
         TrabajadorDAO trabajador=new TrabajadorSQL();
         String nom,id,pass,usu,puestoaux;
         String entrada,salida,comida;
@@ -74,7 +70,21 @@ public class SignUpController extends windowBorderlessManager implements Initial
             warning.setText("las contraseñas no coinciden");
         else
             warning.setText("");
-            
+    }
+    @FXML private void validateId(){
+        String id,user;
+        id=idTrabajador.getText();
+        TrabajadorDAO trabajador=new TrabajadorSQL();
+        user=usuario.getText();
+        try{
+        if(!trabajador.availableId(id))
+            warningId.setText("el id ya esta registrado");
+        if(!trabajador.availableUsuario(user)) 
+            warningUser.setText("ingresa otro usuario");
+        }catch(Exception e){
+            e.printStackTrace();
+            warning.setText("error al revisar id!!!");            
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
